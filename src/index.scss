@@ -1,6 +1,8 @@
 $background-color: #12171a;
 
-body {
+$media-query-md: 768px;
+
+html, body, #root {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -9,5 +11,34 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $background-color;
+  height: 100%;
 }
+
+// Personalized CSS
+
+.full-section{
+  padding: 20rem 0;
+}
+
+.partial-sectionn{
+  padding: 100rem 0;
+}
+
+#landingpage{
+
+  #title{
+    letter-spacing: 3px;
+  }
+
+  #subtitle{
+    letter-spacing: 1px;
+  }
+
+  @media only screen and (min-width: $media-query-md) {
+    .h-md-50{
+      height: 50% !important;
+    }
+  } 
+}
+
 

@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 
-import { 
+import {
     BrowserRouter as Router,
-    Link
- } from 'react-router-dom';
+    Route
+} from 'react-router-dom';
 
 import NavigationPage from '../Navigation';
+import LandingPage from '../Landing';
+
+import * as ROUTES from '../../constants/routes';
 
 class App extends Component {
     render() {
         return (
-            <div className = "container-fluid">
-                <NavigationPage />
+            <React.Fragment>
+                  <NavigationPage />
                 <Router>
-                    
-
-
+                    <Route exact path={ ROUTES.LANDING } component = { LandingPage } />                    
                 </Router>
-            </div>
+            </React.Fragment>
         );
     }
 }

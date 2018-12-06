@@ -12,6 +12,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import ToolTip from '@material-ui/core/Tooltip';
 
 import AccountCircleIcon from '@material-ui/icons/AccountCircleRounded';
 import ExitToAppIcon from '@material-ui/icons/ExitToAppRounded';
@@ -19,8 +20,9 @@ import OfflineBoltIcon from '@material-ui/icons/OfflineBolt';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import CodeIcon from '@material-ui/icons/Code';
 import SearchIcon from '@material-ui/icons/Search';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import AssessmentIcon from '@material-ui/icons/AssessmentRounded';
+import AssignmentIcon from '@material-ui/icons/AssignmentRounded';
+import CalendarTodayIcon from '@material-ui/icons/CalendarTodayRounded';
 import ContactSupportIcon from '@material-ui/icons/ContactSupportRounded';
 
 class NavigationPage extends React.Component {
@@ -58,12 +60,13 @@ class NavigationPage extends React.Component {
                     <OfflineBoltIcon />
                 </a>
                 <div className="nav-item mr-auto text-secondary font-weight-normal ml-md-1">
-                    | <span 
-                    className="font-weight-light mx-1 text-light ml-1" 
-                    title = "Content Management System Plus"
-                    style = {{letterSpacing: '3px', cursor: 'default'}}>
-                    cms+
-                    </span>
+                    | <ToolTip title = "Content Management System Plus" aria-label = "Content Management System Plus">
+                        <span
+                            className="font-weight-light mx-2 text-light ml-1"
+                            style={{ letterSpacing: '3px', cursor: 'default' }}>
+                            cms+
+                        </span>
+                    </ToolTip>
                 </div>
                 <button className="navbar-toggler btn btn-link border-0 text-white" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <ReorderIcon />
@@ -96,7 +99,7 @@ class NavigationPage extends React.Component {
                         <li className="nav-item">
                             <a
                                 href="https://github.com/crrmacarse/cmsx"
-                                target="_blank"  
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="nav-link py-md-1 text-dark"
                                 title="Waffle Time Group of Companies">
@@ -202,19 +205,43 @@ const SideDrawer = ({ classes, left, toggleDrawer }) => {
         <div className={classes.list}>
             <List>
                 <ListItem>
-                    <ListItemIcon><MailIcon /></ListItemIcon>
+                    <ToolTip title = "Content Management System" aria-label = "Content Management System">
+                        <ListItemIcon>
+                            <OfflineBoltIcon
+                                color="primary"
+                            />
+                        </ListItemIcon>
+                    </ToolTip>
                 </ListItem>
                 <Divider />
                 <ListItem>
-                    <ListItemIcon><InboxIcon /></ListItemIcon>
+                    <ToolTip title = "Manage Assesment" aria-label = "Manage Assesment">
+                        <ListItemIcon>
+                            <AssessmentIcon />
+                        </ListItemIcon>
+                    </ToolTip>
                 </ListItem>
                 <ListItem>
-                    <ListItemIcon><InboxIcon /></ListItemIcon>
+                    <ToolTip title = "Manage Assignment" aria-label = "Manage Assignment">
+                        <ListItemIcon>
+                            <AssignmentIcon />
+                        </ListItemIcon>
+                    </ToolTip>
                 </ListItem>
                 <ListItem>
-                    <ListItemIcon><MailIcon /></ListItemIcon>
+                    <ToolTip title = "Manage Schedule" aria-label = "Manage Schedule">
+                        <ListItemIcon>
+                            <CalendarTodayIcon />
+                        </ListItemIcon>
+                    </ToolTip>
                 </ListItem>
-
+                <ListItem>
+                    <ToolTip title = "Content Management System" aria-label = "Content Management System">
+                        <ListItemIcon>
+                            <CalendarTodayIcon />
+                        </ListItemIcon>
+                    </ToolTip>
+                </ListItem>
             </List>
         </div>
     );
