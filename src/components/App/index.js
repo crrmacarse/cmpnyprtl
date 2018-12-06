@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 
-import { Router } from 'react-router';
+import { 
+    BrowserRouter as Router,
+    Link
+ } from 'react-router-dom';
 
 import NavigationPage from '../Navigation';
 
 class App extends Component {
     render() {
         return (
-            <React.Fragment>
+            <div className = "container-fluid">
                 <NavigationPage />
-            </React.Fragment>
+                <Router>
+                    
+
+
+                </Router>
+            </div>
         );
     }
 }
