@@ -77,6 +77,7 @@ class NavigationPage extends React.Component {
                             <a
                                 href="https://github.com/crrmacarse/cmsx"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 className="nav-link py-md-1 text-dark"
                                 title="Open Source!">
                                 <CodeIcon />
@@ -86,6 +87,7 @@ class NavigationPage extends React.Component {
                             <a
                                 href="https://github.com/crrmacarse/cmsx"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 className="nav-link py-md-1 text-dark"
                                 title="Contact MIS Department">
                                 <ContactSupportIcon />
@@ -94,7 +96,8 @@ class NavigationPage extends React.Component {
                         <li className="nav-item">
                             <a
                                 href="https://github.com/crrmacarse/cmsx"
-                                target="_blank"
+                                target="_blank"  
+                                rel="noopener noreferrer"
                                 className="nav-link py-md-1 text-dark"
                                 title="Waffle Time Group of Companies">
                                 {this.state.left
