@@ -12,16 +12,20 @@ html, body, #root {
   -moz-osx-font-smoothing: grayscale;
   background-color: $background-color;
   height: 100%;
+
+  #root{
+    padding-top: 2rem;
+  }
 }
 
 // Personalized CSS
 
 .full-section{
-  padding: 20rem 0;
+  padding: 18rem 0;
 }
 
 .partial-sectionn{
-  padding: 100rem 0;
+  padding: 8rem 0;
 }
 
 #landingpage{

@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
     BrowserRouter as Router,
-    Route
+    Route,
+    Switch
 } from 'react-router-dom';
 
 import NavigationPage from '../Navigation';
+import ManagePage from '../Manage';
 import LandingPage from '../Landing';
 
 import * as ROUTES from '../../constants/routes';
 
-class App extends Component {
-    render() {
-        return (
-            <React.Fragment>
-                  <NavigationPage />
-                <Router>
-                    <Route exact path={ ROUTES.LANDING } component = { LandingPage } />                    
-                </Router>
-            </React.Fragment>
-        );
-    }
-}
+const App = () =>
+    <Router>
+        <React.Fragment>
+            <NavigationPage />
+            <Switch>
+                <Route exact path={ROUTES.LANDING} component={LandingPage} />
+                <Route path={ROUTES.MANAGE} component={ManagePage} />
+            </Switch>
+        </React.Fragment>
+    </Router>
 
 export default App;
