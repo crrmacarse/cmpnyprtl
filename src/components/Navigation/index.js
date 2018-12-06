@@ -5,7 +5,6 @@ import { compose } from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
-import Button from '@material-ui/core/Button';
 import InputBase from '@material-ui/core/InputBase';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
@@ -14,15 +13,18 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import AccountCircleIcon from '@material-ui/icons/AccountCircleRounded';
+import ExitToAppIcon from '@material-ui/icons/ExitToAppRounded';
 import OfflineBoltIcon from '@material-ui/icons/OfflineBolt';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import CodeIcon from '@material-ui/icons/Code';
 import SearchIcon from '@material-ui/icons/Search';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import ContactSupportIcon from '@material-ui/icons/ContactSupportRounded';
 
-class NavigationPage extends React.Component{
-    constructor(props){
+class NavigationPage extends React.Component {
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -30,32 +32,38 @@ class NavigationPage extends React.Component{
         }
     }
 
-    mouseEnter = event => {
+    openDrawer = event => {
         this.setState(prevState => ({
             left: !prevState.left
         })
-    )}
-
-    mouseLeave = event => {
-        this.setState(prevState => ({
-            left: !prevState.left
-        })
-    )}
+        )
+        event.preventDefault();
+    }
 
     toggleDrawer = (side, open) => () => {
         this.setState({
-            [side]: open,
+            left: open,
         })
     }
 
-    render(){
-        return(
-        <nav className="navbar navbar-expand-md fixed-top py-0 bg-info navbar-dark">
-                <a className="navbar-brand p-0 mx-md-2 mb-1" href="#" onMouseEnter = {this.mouseEnter} >
+    render() {
+        return (
+            <nav className="navbar navbar-expand-md fixed-top py-0 bg-info navbar-dark">
+                <a
+                    className="navbar-brand p-0 mx-md-2 mb-1"
+                    href="/"
+                    onMouseEnter={this.openDrawer}
+                    onClick={this.openDrawer}
+                >
                     <OfflineBoltIcon />
                 </a>
                 <div className="nav-item mr-auto text-secondary font-weight-normal ml-md-1">
-                    | <span className="font-weight-light mx-1 text-light ml-1">cms+</span>
+                    | <span 
+                    className="font-weight-light mx-1 text-light ml-1" 
+                    title = "Content Management System Plus"
+                    style = {{letterSpacing: '3px', cursor: 'default'}}>
+                    cms+
+                    </span>
                 </div>
                 <button className="navbar-toggler btn btn-link border-0 text-white" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <ReorderIcon />
@@ -63,10 +71,13 @@ class NavigationPage extends React.Component{
                 <div className="collapse navbar-collapse" id="navbarText">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
+                            <SearchbarWrapped />
+                        </li>
+                        <li className="nav-item">
                             <a
                                 href="https://github.com/crrmacarse/cmsx"
                                 target="_blank"
-                                className="nav-link py-md-1 text-light"
+                                className="nav-link py-md-1 text-dark"
                                 title="Open Source!">
                                 <CodeIcon />
                             </a>
@@ -75,17 +86,31 @@ class NavigationPage extends React.Component{
                             <a
                                 href="https://github.com/crrmacarse/cmsx"
                                 target="_blank"
-                                className="nav-link py-md-1 text-light"
-                                title="Waffle Time Group of Companies">
-                                <span className="small">wtgoc</span>
+                                className="nav-link py-md-1 text-dark"
+                                title="Contact MIS Department">
+                                <ContactSupportIcon />
                             </a>
                         </li>
                         <li className="nav-item">
-                            <SearchbarWrapped />
+                            <a
+                                href="https://github.com/crrmacarse/cmsx"
+                                target="_blank"
+                                className="nav-link py-md-1 text-dark"
+                                title="Waffle Time Group of Companies">
+                                {this.state.left
+                                    ? <ExitToAppIcon />
+                                    : <AccountCircleIcon />
+                                }
+
+                            </a>
                         </li>
+                   
+
+                        
+
                     </ul>
                 </div>
-                <SideDrawerWrapped left = {this.state.left} toggleDrawer = { this.toggleDrawer } />
+                <SideDrawerWrapped left={this.state.left} toggleDrawer={this.toggleDrawer} />
             </nav>
         )
     }
@@ -96,7 +121,7 @@ const styles = theme => ({
         width: '100%',
     },
     list: {
-        width: 200,
+        width: 75,
     },
     grow: {
         flexGrow: 1,
@@ -156,75 +181,69 @@ const styles = theme => ({
     },
 });
 
-class SearchBar extends React.Component {
-    render() {
-        const { classes } = this.props;
-        return (
-            <React.Fragment>
-                <div className={classes.grow} />
-                <div className={classes.search}>
-                    <div className={classes.searchIcon}>
-                        <SearchIcon />
-                    </div>
-                    <InputBase
-                        placeholder="Search…"
-                        classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput,
-                        }}
-                    />
-                </div>
-            </React.Fragment>
-        )
-    }
-}
+const SearchBar = ({ classes }) =>
+    <React.Fragment>
+        <div className={classes.grow} />
+        <div className={classes.search}>
+            <div className={classes.searchIcon}>
+                <SearchIcon />
+            </div>
+            <InputBase
+                placeholder="Search…"
+                classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                }}
+            />
+        </div>
+    </React.Fragment>
 
-class SideDrawer extends React.Component {
-
-    render() {
-        const { classes } = this.props;
-
-        const sideList = (
-            <div className={classes.list}>
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
+const SideDrawer = ({ classes, left, toggleDrawer }) => {
+    const sideList = (
+        <div className={classes.list}>
+            <List>
+                <ListItem>
+                    <ListItemIcon><MailIcon /></ListItemIcon>
+                </ListItem>
                 <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-            </div>
-        );
+                <ListItem>
+                    <ListItemIcon><InboxIcon /></ListItemIcon>
+                </ListItem>
+                <ListItem>
+                    <ListItemIcon><InboxIcon /></ListItemIcon>
+                </ListItem>
+                <ListItem>
+                    <ListItemIcon><MailIcon /></ListItemIcon>
+                </ListItem>
 
-        return (
-            <div>
-                <Drawer open={this.props.left} onClose={this.props.toggleDrawer('left', false)}>
-                    <div
-                        tabIndex={0}
-                        role="button"
-                        onClick={this.props.toggleDrawer('left', false)}
-                        onKeyDown={this.props.toggleDrawer('left', false)}
-                    >
-                        {sideList}
-                    </div>
-                </Drawer>
-            </div>
-        )
-    }
+            </List>
+        </div>
+    );
+
+    return (
+        <div>
+            <Drawer open={left} onClose={toggleDrawer('left', false)}>
+                <div
+                    tabIndex={0}
+                    role="button"
+                    onClick={toggleDrawer('left', false)}
+                    onKeyDown={toggleDrawer('left', false)}
+                >
+                    {sideList}
+                </div>
+            </Drawer>
+        </div>
+    )
 }
 
 SearchBar.PropTypes = {
+    classes: PropTypes.object.isRequired
+}
+
+SideDrawer.PropTypes = {
     classes: PropTypes.object.isRequired,
+    left: PropTypes.bool.isRequired,
+    toggleDrawer: PropTypes.func.isRequired,
 }
 
 const SearchbarWrapped = compose(
