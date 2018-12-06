@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 import { compose } from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
@@ -104,10 +104,6 @@ class NavigationPage extends React.Component {
 
                             </a>
                         </li>
-                   
-
-                        
-
                     </ul>
                 </div>
                 <SideDrawerWrapped left={this.state.left} toggleDrawer={this.toggleDrawer} />
@@ -236,14 +232,14 @@ const SideDrawer = ({ classes, left, toggleDrawer }) => {
     )
 }
 
-SearchBar.PropTypes = {
-    classes: PropTypes.object.isRequired
+SearchBar.propTypes = {
+    classes: propTypes.object.isRequired
 }
 
-SideDrawer.PropTypes = {
-    classes: PropTypes.object.isRequired,
-    left: PropTypes.bool.isRequired,
-    toggleDrawer: PropTypes.func.isRequired,
+SideDrawer.propTypes = {
+    classes: propTypes.object.isRequired,
+    left: propTypes.bool.isRequired,
+    toggleDrawer: propTypes.func.isRequired,
 }
 
 const SearchbarWrapped = compose(
