@@ -1,2 +1,2 @@
 
-![CMS+ landing page](https://imgur.com/a/9exAKO6)
+![CMS+ landing page](https://i.imgur.com/pFAErYW.png)
