@@ -9,16 +9,18 @@ import {
 import NavigationPage from '../Navigation';
 import ManagePage from '../Manage';
 import LandingPage from '../Landing';
+import { SignUpPage } from '../Validation';
 
 import * as ROUTES from '../../constants/routes';
 
 const App = () =>
-    <Router>
+    <Router basename={'/cms'}>
         <React.Fragment>
             <NavigationPage />
             <Switch>
-                <Route exact path={ROUTES.LANDING} component={LandingPage} />
-                <Route path={ROUTES.MANAGE} component={ManagePage} />
+                <Route exact path={ ROUTES.LANDING } component={ LandingPage } />
+                <Route path={ ROUTES.MANAGE } component={ ManagePage } />
+                <Route exacth path = { ROUTES.SIGNUP } component = { SignUpPage } />
             </Switch>
         </React.Fragment>
     </Router>

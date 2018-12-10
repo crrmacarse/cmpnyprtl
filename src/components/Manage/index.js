@@ -6,12 +6,14 @@ import {
     Link
 } from 'react-router-dom';
 
+
 import * as ROUTES from '../../constants/routes';
 
 import { withStyles } from '@material-ui/core/styles';
 
 
 import Charts from './charts';
+import Signin from '../Validation/index';
 
 const ManagePage = ({ match }) => (
     <section id="manage" className="container-fluid h-100 bg-white">
@@ -26,18 +28,16 @@ const ManagePage = ({ match }) => (
                 <Link to={`${match.path}/items`} >ManageItems</Link>
             </li>
             <li>
-                <Link to={`${match.path}/hello`}>Hello</Link>
+                <Link to={`${match.path}/hello`}>Signin 
+                Test</Link>
             </li>
             <li>
                 <Link to={`${match.path}/`}>Test</Link>
             </li>
-            <li>
-                <button onClick = {click => { console.log(`${match.path}`)}} >dada</button>
-            </li>
         </ul>
             <Route exact path={`${match.path}/`} component = {ManageMain} />
             <Route path={`${match.path}/items`} component={ManageItems} />
-            <Route path={`${match.path}/hello`} component={Hello} />
+            <Route path={`${match.path}/hello`} component={Signin} />
     </section>
 )
 

@@ -4,6 +4,9 @@ import propTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import { Link } from 'react-router-dom';
+
+import { SignInDialog, SignUpPage } from '../Validation';
 
 import InputBase from '@material-ui/core/InputBase';
 import Drawer from '@material-ui/core/Drawer';
@@ -24,6 +27,7 @@ import AssessmentIcon from '@material-ui/icons/AssessmentRounded';
 import AssignmentIcon from '@material-ui/icons/AssignmentRounded';
 import CalendarTodayIcon from '@material-ui/icons/CalendarTodayRounded';
 import ContactSupportIcon from '@material-ui/icons/ContactSupportRounded';
+import SettingsIcon from '@material-ui/icons/SettingsRounded';
 
 class NavigationPage extends React.Component {
     constructor(props) {
@@ -31,7 +35,16 @@ class NavigationPage extends React.Component {
 
         this.state = {
             left: false,
+            signinOpen: false,
         }
+    }
+
+    handleClickOpen = () => {
+        this.setState({ signinOpen: true });
+    };
+
+    handleClose = () => {
+        this.setState({ signinOpen: false });
     }
 
     openDrawer = event => {
@@ -60,7 +73,7 @@ class NavigationPage extends React.Component {
                     <OfflineBoltIcon />
                 </a>
                 <div className="nav-item mr-auto text-secondary font-weight-normal ml-md-1">
-                    | <ToolTip title = "Content Management System Plus" aria-label = "Content Management System Plus">
+                    | <ToolTip title="Content Management System Plus" aria-label="Content Management System Plus">
                         <span
                             className="font-weight-light mx-2 text-light ml-1"
                             style={{ letterSpacing: '3px', cursor: 'default' }}>
@@ -98,14 +111,13 @@ class NavigationPage extends React.Component {
                         </li>
                         <li className="nav-item">
                             <a
-                                href="https://github.com/crrmacarse/cmsx"
-                                target="_blank"
-                                rel="noopener noreferrer"
                                 className="nav-link py-md-1 text-dark"
-                                title="Waffle Time Group of Companies">
+                                onClick={this.handleClickOpen}
+                                title="Sign-in"
+                                style={{ cursor: 'pointer' }}>
                                 {this.state.left
-                                    ? <ExitToAppIcon />
-                                    : <AccountCircleIcon />
+                                    ? <AccountCircleIcon />
+                                    : <ExitToAppIcon />
                                 }
 
                             </a>
@@ -113,6 +125,7 @@ class NavigationPage extends React.Component {
                     </ul>
                 </div>
                 <SideDrawerWrapped left={this.state.left} toggleDrawer={this.toggleDrawer} />
+                <SignInDialog open={this.state.signinOpen} handleClose={this.handleClose} />
             </nav>
         )
     }
@@ -205,40 +218,46 @@ const SideDrawer = ({ classes, left, toggleDrawer }) => {
         <div className={classes.list}>
             <List>
                 <ListItem>
-                    <ToolTip title = "Content Management System" aria-label = "Content Management System">
-                        <ListItemIcon>
-                            <OfflineBoltIcon
-                                color="primary"
-                            />
-                        </ListItemIcon>
-                    </ToolTip>
+                    <Link to={`/`}>
+                        <ToolTip title="Content Management System" aria-label="Content Management System">
+                            <ListItemIcon>
+                                <OfflineBoltIcon
+                                    color="primary"
+                                />
+                            </ListItemIcon>
+                        </ToolTip>
+                    </Link>
                 </ListItem>
                 <Divider />
                 <ListItem>
-                    <ToolTip title = "Manage Assesment" aria-label = "Manage Assesment">
-                        <ListItemIcon>
-                            <AssessmentIcon />
-                        </ListItemIcon>
-                    </ToolTip>
+                    <Link to={`/manage`}>
+                        <ToolTip title="Manage Assesment" aria-label="Manage Assesment">
+                            <ListItemIcon>
+                                <AssessmentIcon />
+                            </ListItemIcon>
+                        </ToolTip>
+                    </Link>
                 </ListItem>
                 <ListItem>
-                    <ToolTip title = "Manage Assignment" aria-label = "Manage Assignment">
-                        <ListItemIcon>
-                            <AssignmentIcon />
-                        </ListItemIcon>
-                    </ToolTip>
+                    <Link to={'/signup'}>
+                        <ToolTip title="Manage Assignment" aria-label="Manage Assignment">
+                            <ListItemIcon>
+                                <AssignmentIcon />
+                            </ListItemIcon>
+                        </ToolTip>
+                    </Link>
                 </ListItem>
                 <ListItem>
-                    <ToolTip title = "Manage Schedule" aria-label = "Manage Schedule">
+                    <ToolTip title="Manage Schedule" aria-label="Manage Schedule">
                         <ListItemIcon>
                             <CalendarTodayIcon />
                         </ListItemIcon>
                     </ToolTip>
                 </ListItem>
                 <ListItem>
-                    <ToolTip title = "Content Management System" aria-label = "Content Management System">
+                    <ToolTip title="Content Management System" aria-label="Content Management System">
                         <ListItemIcon>
-                            <CalendarTodayIcon />
+                            <SettingsIcon />
                         </ListItemIcon>
                     </ToolTip>
                 </ListItem>

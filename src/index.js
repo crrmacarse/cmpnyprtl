@@ -16,9 +16,3 @@ ReactDOM.render(
 );
 
 serviceWorker.unregister();
-
-// Disables the auto-reload upon save of react.
-
-if (module.hot) {
-    module.hot.accept();
-}

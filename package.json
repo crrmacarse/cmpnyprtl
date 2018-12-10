@@ -2,6 +2,7 @@
   "name": "cmsx",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://waffletime.com/cms",
   "dependencies": {
     "@material-ui/core": "^3.6.1",
     "@material-ui/icons": "^3.0.1",
