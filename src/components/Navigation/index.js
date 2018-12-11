@@ -67,10 +67,15 @@ class NavigationPage extends React.Component {
                 <a
                     className="navbar-brand p-0 mx-md-2 mb-1"
                     href="/"
-                    onMouseEnter={this.openDrawer}
-                    onClick={this.openDrawer}
                 >
-                    <OfflineBoltIcon />
+                    <AuthUserContext.Consumer>
+                        {authUser =>
+                            authUser
+                                ? <OfflineBoltIcon onMouseEnter={this.openDrawer}
+                                    onClick={this.openDrawer} />
+                                : <OfflineBoltIcon />
+                        }
+                    </AuthUserContext.Consumer>
                 </a>
                 <div className="nav-item mr-auto text-secondary font-weight-normal ml-md-1">
                     | <ToolTip title="Content Management System Plus" aria-label="Content Management System Plus">

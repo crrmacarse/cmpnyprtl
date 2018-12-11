@@ -2,7 +2,9 @@ import React from 'react';
 
 import { withFirebase } from '../Firebase';
 
-const SomeComponent = () => (
+import { withAuthentication, withAuthorization } from '../Session';
+
+const HomePage = () => (
     <div className="container bg-light">
         <p className="text-center display-1">
             Hello
@@ -10,4 +12,6 @@ const SomeComponent = () => (
     </div>
 );
 
-export default withFirebase(SomeComponent);
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(HomePage);
