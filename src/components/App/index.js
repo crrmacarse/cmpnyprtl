@@ -12,6 +12,8 @@ import LandingPage from '../Landing';
 import { SignUpPage } from '../Validation';
 import HomePage from '../Home';
 
+import { withAuthentication } from '../Session';
+
 import * as ROUTES from '../../constants/routes';
 
 const App = () =>
@@ -27,4 +29,4 @@ const App = () =>
         </React.Fragment>
     </Router>
 
-export default App;
+export default withAuthentication(App);

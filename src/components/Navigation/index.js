@@ -5,8 +5,10 @@ import { compose } from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { Link } from 'react-router-dom';
+import { AuthUserContext } from '../Session';
 
 import { SignInDialog } from '../Validation';
+import SIgnOutButton from '../Validation/signout';
 
 import InputBase from '@material-ui/core/InputBase';
 import Drawer from '@material-ui/core/Drawer';
@@ -16,7 +18,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ToolTip from '@material-ui/core/Tooltip';
 
-import AccountCircleIcon from '@material-ui/icons/AccountCircleRounded';
+
+
 import ExitToAppIcon from '@material-ui/icons/ExitToAppRounded';
 import OfflineBoltIcon from '@material-ui/icons/OfflineBolt';
 import ReorderIcon from '@material-ui/icons/Reorder';
@@ -109,18 +112,21 @@ class NavigationPage extends React.Component {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a
-                                // FIX: href interaction. if i try to convert it to button it will cause to an offset in padding.
-                                className="nav-link py-md-1 text-dark"
-                                onClick={this.handleClickOpen}
-                                title="Sign-in"
-                                style={{ cursor: 'pointer' }}>
-                                {this.state.left
-                                    ? <AccountCircleIcon />
-                                    : <ExitToAppIcon />
-                                }
+                            <AuthUserContext.Consumer>
+                                {authUser =>
+                                    authUser
+                                        ? <SIgnOutButton />
+                                        : <a
+                                            // FIX: href interaction. if i try to convert it to button it will cause to an offset in padding.
+                                            className="nav-link py-md-1 text-dark"
+                                            onClick={this.handleClickOpen}
+                                            title="Sign-in"
+                                            style={{ cursor: 'pointer' }}>
+                                            <ExitToAppIcon />
+                                        </a>
 
-                            </a>
+                                }
+                            </AuthUserContext.Consumer>
                         </li>
 
                     </ul>
@@ -299,6 +305,7 @@ const SearchbarWrapped = compose(
 const SideDrawerWrapped = compose(
     withStyles(styles)
 )(SideDrawer)
+
 
 export default NavigationPage;
 

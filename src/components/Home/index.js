@@ -6,7 +6,7 @@ const SomeComponent = () => (
     <div className="container bg-light">
         <p className="text-center display-1">
             Hello
-    </p>
+        </p>
     </div>
 );
 

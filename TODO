@@ -6,8 +6,9 @@ Todo:
 
   ☐ Firebase Integration @started(18-12-10 09:56) @today 
   ✔ Add Firebase support @done(18-12-10 09:57)
-  Add Sign-up
-  Add Login
+  ✔ Add Sign-up @done(18-12-11 15:19)
+  ✔ Add Login @done(18-12-11 15:19)
+  Add Signout
   Add Session Handling
 
   ☐ Manage Branch
@@ -16,6 +17,12 @@ Todo:
   Form Submission Design
   Adding
   Updating
+
+  ☐ Creation of REST API.
+  Inititialization
+  Use JWT Auth + Firebase generated key for auth?
+
+
 
 
 
