@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { Link } from 'react-router-dom';
 
-import { SignInDialog, SignUpPage } from '../Validation';
+import { SignInDialog } from '../Validation';
 
 import InputBase from '@material-ui/core/InputBase';
 import Drawer from '@material-ui/core/Drawer';
@@ -14,7 +14,6 @@ import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import ToolTip from '@material-ui/core/Tooltip';
 
 import AccountCircleIcon from '@material-ui/icons/AccountCircleRounded';
@@ -111,6 +110,7 @@ class NavigationPage extends React.Component {
                         </li>
                         <li className="nav-item">
                             <a
+                                // FIX: href interaction. if i try to convert it to button it will cause to an offset in padding.
                                 className="nav-link py-md-1 text-dark"
                                 onClick={this.handleClickOpen}
                                 title="Sign-in"
@@ -122,6 +122,7 @@ class NavigationPage extends React.Component {
 
                             </a>
                         </li>
+
                     </ul>
                 </div>
                 <SideDrawerWrapped left={this.state.left} toggleDrawer={this.toggleDrawer} />

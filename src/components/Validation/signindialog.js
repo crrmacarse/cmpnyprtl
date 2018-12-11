@@ -70,52 +70,53 @@ class SignInDialog extends React.Component {
         const { classes, open, handleClose } = this.props;
 
         return (
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                TransitionComponent={Transition}
-                keepMounted
-                fullWidth
-                maxWidth="sm"
-            >
-                <DialogTitle>
-                    Enter Credentials
+            <form>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    TransitionComponent={Transition}
+                    keepMounted
+                    fullWidth
+                    maxWidth="sm"
+                >
+                    <DialogTitle>
+                        Enter Credentials
                         </DialogTitle>
-                <DialogContent>
-                <DialogContentText>      
-                        <SignUpLink handleClose = { handleClose }/>
-                    </DialogContentText>
+                    <DialogContent>
+                        <DialogContentText>
+                            <SignUpLink handleClose={handleClose} />
+                        </DialogContentText>
 
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Username"
-                        type="username"
-                        fullWidth
-                    />
-                    <TextField
-                        margin="dense"
-                        id="name"
-                        label="Password"
-                        type="password"
-                        fullWidth
-                    />
-                    
-                </DialogContent>
-                
-                <DialogActions>
-                    <Button
-                        onClick={handleClose}
-                        variant="contained"
-                        className={classes.customBTN}
-                    >
-                        <ExitToAppIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
-                        Sign-in
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="name"
+                            label="Username"
+                            type="username"
+                            fullWidth
+                        />
+                        <TextField
+                            margin="dense"
+                            id="name"
+                            label="Password"
+                            type="password"
+                            fullWidth
+                        />
+
+                    </DialogContent>
+
+                    <DialogActions>
+                        <Button
+                            onClick={handleClose}
+                            variant="contained"
+                            className={classes.customBTN}
+                        >
+                            <ExitToAppIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
+                            Sign-in
                             </Button>
-                </DialogActions>
-            </Dialog>
-
+                    </DialogActions>
+                </Dialog>
+            </form>
         )
     }
 }

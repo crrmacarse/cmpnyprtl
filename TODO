@@ -1,16 +1,21 @@
 
 Todo:
-  ☐ Firebase Integration @started(18-12-10 09:56) @today 
 
+  ☐ README
+  
+
+  ☐ Firebase Integration @started(18-12-10 09:56) @today 
   ✔ Add Firebase support @done(18-12-10 09:57)
   Add Sign-up
   Add Login
   Add Session Handling
 
   ☐ Manage Branch
-
-  GUI Design
+  GUI Design 
   Sidebar Actions  
   Form Submission Design
   Adding
   Updating
+
+
+
