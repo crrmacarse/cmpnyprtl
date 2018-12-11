@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { compose } from 'recompose';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
-import { withRouter } from 'react-router-dom';
 
 
 import * as ROUTES from '../../constants/routes';
@@ -17,6 +16,7 @@ const INITIAL_STATE = {
     passwordOne: '',
     passwordTwo: '',
     error: null,
+    popupopen: false
 };
 
 class SignUpPage extends React.Component {
@@ -24,8 +24,7 @@ class SignUpPage extends React.Component {
         super(props);
 
         this.state = {
-            ...INITIAL_STATE,
-            popupopen: true
+            ...INITIAL_STATE
         }
     }
 
@@ -34,17 +33,23 @@ class SignUpPage extends React.Component {
     }
 
     onSubmit = event => {
+        this.setState(prevState => ({
+            popupopen: !prevState.popupopen
+        }));
         const { username, email, passwordOne } = this.state;
 
         this.props.firebase
             .doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
                 this.setState({...INITIAL_STATE});
+                this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
                 this.setState({ error });
                 setTimeout(() => {
-                    this.setState({popupopen: false});
+                    this.setState(prevState => ({
+                        popupopen: !prevState.popupopen
+                    }))
                 }, 3000)
             });
 
@@ -75,7 +80,7 @@ class SignUpPage extends React.Component {
                 <div className="row py-5 bg-white">
                     <div className="col-md-5 col-12 ml-md-5">
                         <form onSubmit={this.onSubmit}>
-                            <p className="h2 font-weight-bold">
+                            <p className="h2 font-weight-bold mb-2">
                                 Sign Up
                         </p>
                             <div className="m-2">
