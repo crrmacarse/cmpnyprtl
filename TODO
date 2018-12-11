@@ -8,8 +8,9 @@ Todo:
   ✔ Add Firebase support @done(18-12-10 09:57)
   ✔ Add Sign-up @done(18-12-11 15:19)
   ✔ Add Login @done(18-12-11 15:19)
-  Add Signout
-  Add Session Handling
+  ✔ Add Signout @done(18-12-11 17:01)
+  ✔ Add Session Handling @done(18-12-11 17:01)
+  Authorization
 
   ☐ Manage Branch
   GUI Design 

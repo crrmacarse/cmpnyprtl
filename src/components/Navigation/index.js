@@ -18,8 +18,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ToolTip from '@material-ui/core/Tooltip';
 
-
-
 import ExitToAppIcon from '@material-ui/icons/ExitToAppRounded';
 import OfflineBoltIcon from '@material-ui/icons/OfflineBolt';
 import ReorderIcon from '@material-ui/icons/Reorder';
@@ -115,7 +113,7 @@ class NavigationPage extends React.Component {
                             <AuthUserContext.Consumer>
                                 {authUser =>
                                     authUser
-                                        ? <SIgnOutButton />
+                                        ? <SIgnOutButton /> // TODO: Update Design. Add User Console here ala Google
                                         : <a
                                             // FIX: href interaction. if i try to convert it to button it will cause to an offset in padding.
                                             className="nav-link py-md-1 text-dark"
@@ -124,7 +122,6 @@ class NavigationPage extends React.Component {
                                             style={{ cursor: 'pointer' }}>
                                             <ExitToAppIcon />
                                         </a>
-
                                 }
                             </AuthUserContext.Consumer>
                         </li>

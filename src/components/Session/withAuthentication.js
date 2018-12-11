@@ -3,6 +3,18 @@ import React from 'react';
 import AuthUserContext from './context';
 import { withFirebase } from '../Firebase';
 
+/*
+	 A higher-order component that focuses on giving a component its authentication through *Context Consumer 
+	
+		<AuthUserContext.Consumer>
+			{authUser =>
+				...
+			}
+		</AuthUserContext.Consumer>
+	
+	*https://reactjs.org/docs/context.html
+*/
+
 const withAuthentication = Component => {
 	class WithAuthentication extends React.Component {
 		constructor(props){
