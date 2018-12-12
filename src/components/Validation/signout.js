@@ -4,13 +4,13 @@ import { withFirebase } from '../Firebase';
 import AccountCircleIcon from '@material-ui/icons/AccountCircleRounded';
 
 const SignOutButton = ({ firebase }) => (
-  <a
+  <span
     className="nav-link py-md-1 text-dark"
     title="Sign-Out"
     onClick={firebase.doSignOut}
     style={{ cursor: 'pointer' }}>
     <AccountCircleIcon />
-  </a>
+  </span>
 );
 
 export default withFirebase(SignOutButton);

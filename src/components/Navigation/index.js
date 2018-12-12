@@ -18,6 +18,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ToolTip from '@material-ui/core/Tooltip';
 
+import HomeIcon from '@material-ui/icons/HomeRounded';
 import ExitToAppIcon from '@material-ui/icons/ExitToAppRounded';
 import OfflineBoltIcon from '@material-ui/icons/OfflineBolt';
 import ReorderIcon from '@material-ui/icons/Reorder';
@@ -29,123 +30,18 @@ import CalendarTodayIcon from '@material-ui/icons/CalendarTodayRounded';
 import ContactSupportIcon from '@material-ui/icons/ContactSupportRounded';
 import SettingsIcon from '@material-ui/icons/SettingsRounded';
 
-class NavigationPage extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            left: false,
-            signinOpen: false,
-        }
-    }
-
-    handleClickOpen = () => {
-        this.setState({ signinOpen: true });
-    };
-
-    handleClose = () => {
-        this.setState({ signinOpen: false });
-    }
-
-    openDrawer = event => {
-        this.setState(prevState => ({
-            left: !prevState.left
-        })
-        )
-        event.preventDefault();
-    }
-
-    toggleDrawer = (side, open) => () => {
-        this.setState({
-            left: open,
-        })
-    }
-
-    render() {
-        return (
-            <nav className="navbar navbar-expand-md fixed-top py-0 bg-info navbar-dark">
-                <a
-                    className="navbar-brand p-0 mx-md-2 mb-1"
-                    href="/"
-                >
-                    <AuthUserContext.Consumer>
-                        {authUser =>
-                            authUser
-                                ? <OfflineBoltIcon onMouseEnter={this.openDrawer}
-                                    onClick={this.openDrawer} />
-                                : <OfflineBoltIcon />
-                        }
-                    </AuthUserContext.Consumer>
-                </a>
-                <div className="nav-item mr-auto text-secondary font-weight-normal ml-md-1">
-                    | <ToolTip title="Content Management System Plus" aria-label="Content Management System Plus">
-                        <span
-                            className="font-weight-light mx-2 text-light ml-1"
-                            style={{ letterSpacing: '3px', cursor: 'default' }}>
-                            cms+
-                        </span>
-                    </ToolTip>
-                </div>
-                <button className="navbar-toggler btn btn-link border-0 text-white" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <ReorderIcon />
-                </button>
-                <div className="collapse navbar-collapse" id="navbarText">
-                    <ul className="navbar-nav ml-auto">
-                        <li className="nav-item">
-                            <SearchbarWrapped />
-                        </li>
-                        <li className="nav-item">
-                            <a
-                                href="https://github.com/crrmacarse/cmsx"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="nav-link py-md-1 text-dark"
-                                title="Open Source!">
-                                <CodeIcon />
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a
-                                href="https://github.com/crrmacarse/cmsx"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="nav-link py-md-1 text-dark"
-                                title="Contact MIS Department">
-                                <ContactSupportIcon />
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <AuthUserContext.Consumer>
-                                {authUser =>
-                                    authUser
-                                        ? <SIgnOutButton /> // TODO: Update Design. Add User Console here ala Google
-                                        : <a
-                                            // FIX: href interaction. if i try to convert it to button it will cause to an offset in padding.
-                                            className="nav-link py-md-1 text-dark"
-                                            onClick={this.handleClickOpen}
-                                            title="Sign-in"
-                                            style={{ cursor: 'pointer' }}>
-                                            <ExitToAppIcon />
-                                        </a>
-                                }
-                            </AuthUserContext.Consumer>
-                        </li>
-
-                    </ul>
-                </div>
-                <SideDrawerWrapped left={this.state.left} toggleDrawer={this.toggleDrawer} />
-                <SignInDialog open={this.state.signinOpen} handleClose={this.handleClose} />
-            </nav>
-        )
-    }
-}
-
 const styles = theme => ({
     root: {
         width: '100%',
     },
     list: {
         width: 75,
+    },
+    lightTooltip: {
+        backgroundColor: theme.palette.common.white,
+        color: theme.palette.text.primary,
+        boxShadow: theme.shadows[1],
+        fontSize: 11,
     },
     grow: {
         flexGrow: 1,
@@ -205,6 +101,123 @@ const styles = theme => ({
     },
 });
 
+
+class NavigationPage extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            left: false,
+            signinOpen: false,
+        }
+    }
+
+    openSignin = () => {
+        this.setState({ signinOpen: true });
+    };
+
+    closeSignin = () => {
+        this.setState({ signinOpen: false });
+    }
+
+    openDrawer = event => {
+        this.setState(prevState => ({
+            left: !prevState.left
+        })
+        )
+        event.preventDefault();
+    }
+
+    toggleDrawer = (side, open) => () => {
+        this.setState({
+            left: open,
+        })
+    }
+
+    render() {
+        return (
+            <nav className="navbar navbar-expand-md fixed-top py-0 bg-info navbar-dark">
+                <ToolTip title="You need to sign-in first" aria-label="You need to sign-in first">
+                    <Link
+                        to={'/'}
+                        className="navbar-brand p-0 mx-md-2 mb-1"
+                        onDoubleClick={this.openSignin}
+                    >
+                        <AuthUserContext.Consumer>
+                            {authUser =>
+                                authUser
+                                    ? <OfflineBoltIcon onMouseEnter={this.openDrawer}
+                                        onClick={this.openDrawer} />
+                                    : <OfflineBoltIcon />
+                            }
+                        </AuthUserContext.Consumer>
+                    </Link>
+                </ToolTip>
+                <div className="nav-item mr-auto text-secondary font-weight-normal ml-md-1">
+                    | <ToolTip title="Content Management System Plus" aria-label="Content Management System Plus">
+                        <span
+                            className="font-weight-light mx-2 text-light ml-1"
+                            style={{ letterSpacing: '3px', cursor: 'default' }}>
+                            cms+
+                        </span>
+                    </ToolTip>
+                </div>
+                <button className="navbar-toggler btn btn-link border-0 text-white" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <ReorderIcon />
+                </button>
+                <div className="collapse navbar-collapse" id="navbarText">
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item">
+                            <SearchbarWrapped />
+                        </li>
+                        <li className="nav-item">
+                            <ToolTip title="Open Source!" aria-label="Open Source!">
+                                <a
+                                    href="https://github.com/crrmacarse/cmsx"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="nav-link py-md-1 text-dark">
+                                    <CodeIcon />
+                                </a>
+                            </ToolTip>
+                        </li>
+                        <li className="nav-item">
+                            <ToolTip title="Contact MIS Department" aria-label="Contact MIS Department">
+                                <a
+                                    href="https://github.com/crrmacarse/cmsx"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="nav-link py-md-1 text-dark">
+                                    <ContactSupportIcon />
+                                </a>
+                            </ToolTip>
+                        </li>
+                        <li className="nav-item">
+                            <AuthUserContext.Consumer>
+                                {authUser =>
+                                    authUser
+                                        ? <SIgnOutButton /> // TODO: Update Design. Add User Console here ala Google
+                                        : <span
+                                            // FIX: href interaction. if i try to convert it to button it will cause to an offset in padding.
+                                            className="nav-link py-md-1 text-dark"
+                                            onClick={this.openSignin}
+                                            title="Sign-in"
+                                            style={{ cursor: 'pointer' }}>
+                                            <ExitToAppIcon />
+                                        </span>
+                                }
+                            </AuthUserContext.Consumer>
+                        </li>
+
+                    </ul>
+                </div>
+                <SideDrawerWrapped left={this.state.left} toggleDrawer={this.toggleDrawer} />
+                <SignInDialog open={this.state.signinOpen} closeSignin={this.closeSignin} />
+            </nav >
+        )
+    }
+}
+
 const SearchBar = ({ classes }) =>
     <React.Fragment>
         <div className={classes.grow} />
@@ -238,6 +251,15 @@ const SideDrawer = ({ classes, left, toggleDrawer }) => {
                     </Link>
                 </ListItem>
                 <Divider />
+                <ListItem>
+                    <Link to={`/home`}>
+                        <ToolTip title="Home" aria-label="Home">
+                            <ListItemIcon>
+                                <HomeIcon />
+                            </ListItemIcon>
+                        </ToolTip>
+                    </Link>
+                </ListItem>
                 <ListItem>
                     <Link to={`/manage`}>
                         <ToolTip title="Manage Assesment" aria-label="Manage Assesment">
@@ -289,6 +311,7 @@ const SideDrawer = ({ classes, left, toggleDrawer }) => {
         </div>
     )
 }
+
 
 SearchBar.propTypes = {
     classes: propTypes.object.isRequired

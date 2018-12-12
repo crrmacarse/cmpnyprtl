@@ -1,68 +1,117 @@
 import React from 'react';
-import propTypes from 'prop-types';
+
 import {
-    Switch,
     Route,
     Link
 } from 'react-router-dom';
 
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
-import * as ROUTES from '../../constants/routes';
+// TODO: Manage Component
 
-import { withStyles } from '@material-ui/core/styles';
+class ManagePage extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            anchorEl: null,
+            title: 'Home',
+        }
+    }
+
+    handleClick = event => {
+        this.setState({
+            anchorEl: event.currentTarget
+        });
+    }
+
+    handleClose = () => {
+        this.setState({ anchorEl: null });
+    }
+
+    menuClicked = (event) => {
+        this.setState({ title: event.nativeEvent.target.outerText })
+        this.handleClose();
+    }
 
 
-import Charts from './charts';
-import Signin from '../Validation/index';
+    render() {
+        const { match } = this.props;
 
-const ManagePage = ({ match }) => (
-    <section id="manage" className="container-fluid h-100 bg-white">
-        <div className="row bg-dark py-1 mb-3 text-white">
-            <div className="col-12 text-right">
-                <p className="d-inline mx-2 px-3 small font-weight-light border-right mb-0"> &nbsp; Last Update: 2018/03/25 14:00:03</p>
-                <p className="d-inline mx-2 small font-weight-bold mb-0"> Manage Section</p>
-            </div>
-        </div>
-        <ul>
-            <li>
-                <Link to={`${match.path}/items`} >ManageItems</Link>
-            </li>
-            <li>
-                <Link to={`${match.path}/hello`}>Signin 
-                Test</Link>
-            </li>
-            <li>
-                <Link to={`${match.path}/`}>Test</Link>
-            </li>
-        </ul>
-            <Route exact path={`${match.path}/`} component = {ManageMain} />
-            <Route path={`${match.path}/items`} component={ManageItems} />
-            <Route path={`${match.path}/hello`} component={Signin} />
-    </section>
-)
+        return (
+
+            <section id="manage" className="container-fluid h-100 bg-white">
+                <div className="row bg-dark py-1 mb-3 text-white">
+                    <div className="col-12 text-right">
+                        <p className="d-inline mx-2 px-3 small font-weight-light border-right mb-0"> &nbsp; Last Update: 2018/03/25 14:00:03</p>
+                        <ManageMenu
+                            match={this.props.match}
+                            anchorEl={this.state.anchorEl}
+                            title={this.state.title}
+                            handleClick={this.handleClick}
+                            handleClose={this.handleClose}
+                            menuClicked={this.menuClicked}
+                        />
+                    </div>
+                </div>
+                <Route exact path={`${match.path}/`} component={ManageMain} />
+                <Route path={`${match.path}/items`} component={ManageItems} />
+            </section>
+
+        )
+    }
+
+}
 
 const ManageMain = () => (
     <div className="row text-dark">
-        <div className="col">
-
-        </div>
-        <div className="col-7">
-
-            <Charts />
-        </div>
+        <p className="display-4">
+            Hello
+        </p>
     </div>
 )
+
+const ManageMenu = ({ match, anchorEl, title, handleClick, handleClose, menuClicked }) => {
+    return (
+        <React.Fragment>
+            <p
+                className="d-inline mx-2 small font-weight-bold mb-0"
+                aria-owns={anchorEl ? 'simple-menu' : undefined}
+                onClick={handleClick}
+                aria-haspopup="true"
+                style={{ cursor: 'pointer' }}
+            > {title}</p>
+
+            <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <Link className = "clean-linkrouter" to={`${match.path}/`}>
+                    <MenuItem name="Doctorate" onClick={menuClicked}>
+                        Home
+                    </MenuItem>
+                </Link>
+                
+                <Link className = "clean-linkrouter" to={`${match.path}/items`}>
+                    <MenuItem name="Doctorate" onClick={menuClicked}>
+                        Manage Items
+                </MenuItem>
+                </Link>
+
+            </Menu>
+        </React.Fragment >
+    )
+
+}
 
 const ManageItems = () => (
     <div className="text-dark">
         <h1 className="display-4">Items</h1>
     </div>
 )
-
-const Hello = () =>
-    <div className="text-dark">
-        <h1 className="display-4">Hello World</h1>
-    </div>
 
 // const ManagePage = ({ match }) =>
 //     <section id="manage" className="container-fluid h-100 bg-white">

@@ -73,7 +73,7 @@ class SignInDialog extends React.Component {
             .doSignInWithEmailAndPassword(email, password)
             .then(authUser => {
                 this.setState({ ...INITIAL_STATE });
-                this.props.handleClose();
+                this.props.closeSignin();
                 this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
@@ -101,14 +101,14 @@ class SignInDialog extends React.Component {
             error
         } = this.state;
 
-        const { classes, open, handleClose } = this.props;
+        const { classes, open, closeSignin } = this.props;
 
         const isInvalid = password === '' || email === '';
 
         return (
                 <Dialog
                     open={open}
-                    onClose={handleClose}
+                    onClose={closeSignin}
                     TransitionComponent={Transition}
                     keepMounted
                     fullWidth
@@ -120,7 +120,7 @@ class SignInDialog extends React.Component {
                         </DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            <SignUpLink handleClose={handleClose} />
+                            <SignUpLink handleClose={closeSignin} />
                         </DialogContentText>
 
                         <TextField
@@ -177,7 +177,7 @@ class SignInDialog extends React.Component {
 SignInDialog.propTypes = {
     classes: propTypes.object.isRequired,
     open: propTypes.bool.isRequired,
-    handleClose: propTypes.func.isRequired,
+    closeSignin: propTypes.func.isRequired,
 }
 
 const SignIn = compose(
