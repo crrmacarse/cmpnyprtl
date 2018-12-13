@@ -58,7 +58,6 @@ class SignUpPage extends React.Component {
 
     }
 
-    // TODO: Sign up functions
     render() {
     
         const {

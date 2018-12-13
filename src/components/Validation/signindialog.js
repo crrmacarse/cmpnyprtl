@@ -60,8 +60,6 @@ class SignInDialog extends React.Component {
         };
     }
 
-    // TODO: Signin paused due to missing authUser. Focus first on creating auth.
-
     onSubmit = event => {
         const { email, password } = this.state;
         
