@@ -42,7 +42,6 @@ class ManagePage extends React.Component {
         const { match } = this.props;
 
         return (
-
             <section id="manage" className="container-fluid h-100 bg-white">
                 <div className="row bg-dark py-1 mb-3 text-white">
                     <div className="col-12 text-right">
@@ -60,7 +59,6 @@ class ManagePage extends React.Component {
                 <Route exact path={`${match.path}/`} component={ManageMain} />
                 <Route path={`${match.path}/items`} component={ManageItems} />
             </section>
-
         )
     }
 

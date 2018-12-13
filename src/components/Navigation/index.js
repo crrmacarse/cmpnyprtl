@@ -17,6 +17,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ToolTip from '@material-ui/core/Tooltip';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import HomeIcon from '@material-ui/icons/HomeRounded';
 import ExitToAppIcon from '@material-ui/icons/ExitToAppRounded';
@@ -29,6 +31,8 @@ import AssignmentIcon from '@material-ui/icons/AssignmentRounded';
 import CalendarTodayIcon from '@material-ui/icons/CalendarTodayRounded';
 import ContactSupportIcon from '@material-ui/icons/ContactSupportRounded';
 import SettingsIcon from '@material-ui/icons/SettingsRounded';
+import AccountCircleIcon from '@material-ui/icons/AccountCircleRounded';
+import AspectRatioIcon from '@material-ui/icons/AspectRatioRounded';
 
 const styles = theme => ({
     root: {
@@ -196,7 +200,7 @@ class NavigationPage extends React.Component {
                             <AuthUserContext.Consumer>
                                 {authUser =>
                                     authUser
-                                        ? <SIgnOutButton /> // TODO: Update Design. Add User Console here ala Google
+                                        ? <MenuToggle /> // TODO: Update Design. Add User Console here ala Google
                                         : <span
                                             // FIX: href interaction. if i try to convert it to button it will cause to an offset in padding.
                                             className="nav-link py-md-1 text-dark"
@@ -218,6 +222,78 @@ class NavigationPage extends React.Component {
     }
 }
 
+class MenuToggle extends React.Component {
+    state = {
+        anchorEl: null
+    }
+
+    handleClick = event => {
+        this.setState({
+            anchorEl: event.currentTarget
+        });
+    }
+
+    handleClose = () => {
+        this.setState({ anchorEl: null });
+    }
+
+    render() {
+        const { anchorEl } = this.state;
+
+        return (
+            <React.Fragment>
+                <ToolTip title="Account" aria-label="Account">
+                    <span
+                        className="nav-link py-md-1 text-dark"
+                        aria-owns={anchorEl ? 'simple-menu' : undefined}
+                        onClick={this.handleClick}
+                        aria-haspopup="true"
+                        style={{ cursor: 'pointer' }}
+                    ><AccountCircleIcon /></span>
+                </ToolTip>
+
+                <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={this.handleClose}
+                >
+                    <MenuItem onClick={this.handleClose}>
+                        <span className="text-dark">
+                            <AccountCircleIcon />
+                            <p className="d-inline mx-3 small font-weight-bold">Account</p>
+                        </span>
+                    </MenuItem>
+
+                    <MenuItem onClick={this.handleClose}>
+                        <span className="text-dark">
+                            <SettingsIcon />
+                            <p className="d-inline mx-3 small font-weight-bold">Settings</p>
+                        </span>
+                    </MenuItem>
+
+                    <MenuItem onClick={this.handleClose}>
+                        <span className="text-dark">
+                            <AspectRatioIcon />
+                            <p className="d-inline mx-3 small font-weight-bold">Preference</p>
+                        </span>
+                    </MenuItem>
+
+                    <MenuItem onClick={this.handleClose}>
+                        <SIgnOutButton />
+                    </MenuItem>
+
+
+                </Menu>
+            </React.Fragment >
+        )
+    }
+
+}
+
+
+// FIX: it can be optimized by passing navigation main to sub components the needed css class.
+//  then seperate for readability
 const SearchBar = ({ classes }) =>
     <React.Fragment>
         <div className={classes.grow} />

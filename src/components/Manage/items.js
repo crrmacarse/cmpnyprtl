@@ -16,7 +16,6 @@ class ManageItemsPage extends React.Component {
         }
     }
 
-
     componentDidMount() {
 
     }

@@ -66,8 +66,6 @@ class SignUpPage extends React.Component {
             email,
             passwordOne,
             passwordTwo,
-            error,
-            popupopen
         } = this.state;
 
         const isInvalid =
