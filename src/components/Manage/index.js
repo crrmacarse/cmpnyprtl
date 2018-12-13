@@ -5,6 +5,8 @@ import {
     Link
 } from 'react-router-dom';
 
+import ManageItems from './items';
+
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -107,11 +109,7 @@ const ManageMenu = ({ match, anchorEl, title, handleClick, handleClose, menuClic
 
 }
 
-const ManageItems = () => (
-    <div className="text-dark">
-        <h1 className="display-4">Items</h1>
-    </div>
-)
+
 
 // const ManagePage = ({ match }) =>
 //     <section id="manage" className="container-fluid h-100 bg-white">

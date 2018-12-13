@@ -6,6 +6,8 @@ import { withFirebase } from '../Firebase';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
+import { withSnackbar } from 'notistack';
+
 
 import { SignUpLink } from './index';
 
@@ -60,29 +62,20 @@ class SignInDialog extends React.Component {
 
     // TODO: Signin paused due to missing authUser. Focus first on creating auth.
 
-    
-
     onSubmit = event => {
         const { email, password } = this.state;
-
-        this.setState(prevState => ({
-            popupopen: !prevState.popupopen
-        }))
         
         this.props.firebase
             .doSignInWithEmailAndPassword(email, password)
             .then(authUser => {
                 this.setState({ ...INITIAL_STATE });
+                this.props.enqueueSnackbar('Succesfully logged in', {variant: 'success'});
                 this.props.closeSignin();
                 this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
-                this.setState({ error });
-                setTimeout(() => {
-                    this.setState(prevState => ({
-                        popupopen: !prevState.popupopen
-                    }))
-                }, 3000)
+                this.props.enqueueSnackbar(error.message, {variant: 'error'});
+                this.setState({password: ''})
             });
 
         event.preventDefault();
@@ -97,8 +90,6 @@ class SignInDialog extends React.Component {
         const {
             email,
             password,
-            popupopen,
-            error
         } = this.state;
 
         const { classes, open, closeSignin } = this.props;
@@ -122,7 +113,6 @@ class SignInDialog extends React.Component {
                         <DialogContentText>
                             <SignUpLink handleClose={closeSignin} />
                         </DialogContentText>
-
                         <TextField
                             name = "email"
                             autoFocus
@@ -146,16 +136,7 @@ class SignInDialog extends React.Component {
                             onChange = {this.onChange}
                             value={password}
                         />
-
                     </DialogContent>
-
-                    {error &&
-                        <div
-                            className={popupopen ? 'alert alert-danger my-3' : 'd-none'}
-                            role="alert"
-                        >{error.message}
-                        </div>
-                    }
 
                     <DialogActions>
                         <Button
@@ -183,7 +164,8 @@ SignInDialog.propTypes = {
 const SignIn = compose(
     withFirebase,
     withStyles(styles),
-    withRouter
+    withRouter,
+    withSnackbar
 )(SignInDialog);
 
 export default SignIn;

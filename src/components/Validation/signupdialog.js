@@ -3,6 +3,7 @@ import React from 'react';
 import { compose } from 'recompose';
 import { Link, withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
+import { withSnackbar } from 'notistack';
 
 
 import * as ROUTES from '../../constants/routes';
@@ -14,9 +15,7 @@ const INITIAL_STATE = {
     username: '',
     email: '',
     passwordOne: '',
-    passwordTwo: '',
-    error: null,
-    popupopen: false
+    passwordTwo: ''
 };
 
 class SignUpPage extends React.Component {
@@ -33,9 +32,6 @@ class SignUpPage extends React.Component {
     }
 
     onSubmit = event => {
-        this.setState(prevState => ({
-            popupopen: !prevState.popupopen
-        }));
         const { username, email, passwordOne } = this.state;
 
         this.props.firebase
@@ -51,15 +47,11 @@ class SignUpPage extends React.Component {
             })
             .then(() => {
                 this.setState({...INITIAL_STATE});
+                this.props.enqueueSnackbar('Succesfully registered', {variant: 'success'});
                 this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
-                this.setState({ error });
-                setTimeout(() => {
-                    this.setState(prevState => ({
-                        popupopen: !prevState.popupopen
-                    }))
-                }, 3000)
+                this.props.enqueueSnackbar(error.message, {variant: 'error'});
             });
 
         event.preventDefault();
@@ -140,14 +132,6 @@ class SignUpPage extends React.Component {
                                 />
                             </div>
 
-                            {error && 
-                                <div
-                                    className = { popupopen ? 'alert alert-danger mt-4' : 'd-none'}
-                                    role = "alert"
-                                >{error.message}
-                                </div>
-                            }
-
                             <div className="mt-5">
                                 <Button
                                     disabled={isInvalid}
@@ -201,6 +185,7 @@ const SignUpLink = ({ handleClose }) => {
 const SignUp = compose(
     withFirebase,
     withRouter,
+    withSnackbar,
 )(SignUpPage);
 
 export default SignUp;

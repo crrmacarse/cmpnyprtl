@@ -2,7 +2,30 @@
 Todo:
 
   ☐ README
+
+                    . *  .
+                    * .0oOo. *
+                      i====i_
+                      ||||||_)
+                      ||||||  
+                      `===-'
   
+           https://github.com/crrmacarse\
+
+  LEGEND:
+
+    targeted          :   🎯
+    need research     :   🔍
+    on-hold           :   🤔      
+    fucked            :   🔪
+    rip               :   💀
+
+
+  ========================================================================================================
+
+  ☐ Initial
+  ✔ Planning @done(18-12-13 11:36)
+  ✔ Design @done(18-12-13 11:36)
 
   ☐ Firebase Integration @started(18-12-10 09:56) @today 
   ✔ Add Firebase support @done(18-12-10 09:57)
@@ -10,13 +33,15 @@ Todo:
   ✔ Add Login @done(18-12-11 15:19)
   ✔ Add Signout @done(18-12-11 17:01)
   ✔ Add Session Handling @done(18-12-11 17:01)
-  ✔ Authorization @done(18-12-12 18:16)
-  
+  ✔ Authorization @done(18-12-12 18:16)  
+    /
+      ✔ Fix error regarding https @critical @done(18-12-13 11:10) -- removed force http in .htaccess
+    General use for material-ui snackbar(passing parameter then display => )
+
   Presentation
-  Home GUI @partial
-  Landing Page Improvment
+  Home GUI 🤔
+  Landing Page Improvment 🤔
   
-  ✔ Fix error regarding https @critical @done(18-12-13 11:10) -- removed force http in .htaccess
 
   ☐ Manage Branch
   GUI Design 
