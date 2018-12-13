@@ -16,6 +16,7 @@ Todo:
   Home GUI @partial
   Landing Page Improvment
   
+  ✔ Fix error regarding https @critical @done(18-12-13 11:10) -- removed force http in .htaccess
 
   ☐ Manage Branch
   GUI Design 
