@@ -1,4 +1,5 @@
-$background-color: #12171a;
+$background-color: #343a40;
+$mis-color : #ff753d;
 
 $media-query-md: 768px;
 
@@ -16,7 +17,12 @@ html, body, #root {
   #root{
     padding-top: 2rem;
   }
+
+  .navbar{
+    background-color: $mis-color; 
+  }
 }
+
 
 // Personalized CSS
 
@@ -31,6 +37,13 @@ html, body, #root {
 .clean-linkrouter{
   text-decoration: none !important;
   outline: none;
+}
+
+.loading{
+  cursor: pointer;
+  position: fixed;
+  left: 50%;
+  bottom: 40%;
 }
 
 #landingpage{

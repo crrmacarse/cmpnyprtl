@@ -4,7 +4,11 @@ import { compose } from 'recompose';
 import { withSnackbar } from 'notistack';
 import { withAuthorization } from '../Session';
 
-import Loading from '../Include/loading';
+import { Loading } from '../Include';
+
+import * as ROUTES from '../../constants/routes';
+
+// TODO: Implement Table add / display
 
 class ManageItemsPage extends React.Component {
     constructor(props) {
@@ -17,6 +21,7 @@ class ManageItemsPage extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({ loading: true });
 
     }
 
@@ -25,21 +30,20 @@ class ManageItemsPage extends React.Component {
     }
 
     render() {
+        const { loading } = this.state;
 
         return (
-            <div className="row">
-                <div className="col-md-12 col-12">
+            <div className="row text-dark">
+                <div className="col-12">
+                    <p className="h2 font-weight-light">
+                        Nunc at lectus neque <span className="h3 text-secondary font-weight-bold" onClick = {
+                            () => {
+                                this.props.history.push(ROUTES.LANDING);
+                            }
+                        }>(55)</span>
+                    </p>
                     <div className="text-dark">
-                        <h1 className="display-4">Items</h1>
-                        <Loading size = {30}/>
-                        <button 
-                            type = "button"
-                            className = "btn-lg btn-primary btn"
-                            onClick = {() => {
-                                this.props.enqueueSnackbar('Success', {variant: 'success'});
-                            }}
-                        >Click for Notifcation
-                        </button>
+                    {loading && <React.Fragment><Loading /></React.Fragment>}
 
                     </div>
                 </div>

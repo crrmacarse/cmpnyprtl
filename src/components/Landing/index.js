@@ -6,15 +6,15 @@ const LandingPage = () =>
             <div className="col-md-12 col-12">
                 <p
                     id="title"
-                    className="h1 font-weight-normal mb-2"
+                    className="display-4 font-weight-bold mb-2"
                 >
-                    Content Management System
+                    Waffle Time Group of Companies 
                   </p>
                 <p
                     d="subtitle"
-                    className="h6 font-weight-light"
+                    className="h5 font-weight-light"
                 >
-                    A cross-platform solution for Website Management
+                   Duis felis nulla, sagittis suscipit metus vel, porttitor auctor metus.
                    </p>
             </div>
         </div>

@@ -66,9 +66,11 @@ class ManagePage extends React.Component {
 
 const ManageMain = () => (
     <div className="row text-dark">
-        <p className="display-4">
-            Hello
-        </p>
+        <div className="col-12">
+            <p className="h2 font-weight-light">
+                Nunc at lectus neque <span className = "h3 text-secondary font-weight-bold">(55)</span>
+            </p>
+        </div>
     </div>
 )
 
@@ -89,13 +91,13 @@ const ManageMenu = ({ match, anchorEl, title, handleClick, handleClose, menuClic
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <Link className = "clean-linkrouter" to={`${match.path}/`}>
+                <Link className="clean-linkrouter" to={`${match.path}/`}>
                     <MenuItem name="Doctorate" onClick={menuClicked}>
                         Home
                     </MenuItem>
                 </Link>
-                
-                <Link className = "clean-linkrouter" to={`${match.path}/items`}>
+
+                <Link className="clean-linkrouter" to={`${match.path}/items`}>
                     <MenuItem name="Doctorate" onClick={menuClicked}>
                         Manage Items
                 </MenuItem>

@@ -1,10 +1,12 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
 
+import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
+
 import AuthUserContext from './context';
+
+import * as ROUTES from '../../constants/routes';
 
 const withAuthorization = condition => Component => {
     class withAuthorization extends React.Component {
@@ -13,6 +15,8 @@ const withAuthorization = condition => Component => {
                 authUser => {
                     if (!condition(authUser)) {
                         this.props.history.push(ROUTES.LANDING);
+                        // TODO: I can't add a snackbar('you need to sign--in first' ) here due to => signout event. this triggers
+                        // together with 'sign-out succesfully'
                     }
                 },
             );
