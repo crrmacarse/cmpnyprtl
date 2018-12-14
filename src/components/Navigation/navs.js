@@ -79,7 +79,7 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link to={`/manage`}>
+                    <Link to={`/cms`}>
                         <ToolTip title="Content Management System" aria-label="Content Management System">
                             <ListItemIcon>
                                 <ChromeReaderModeIcon />
@@ -115,7 +115,7 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link to={'/settings'}>
+                    <Link to={'/api'}>
                         <ToolTip title="The API" aria-label="The API">
                             <ListItemIcon>
                                 <FingerPrintIcon />

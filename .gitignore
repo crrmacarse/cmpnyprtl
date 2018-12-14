@@ -25,3 +25,4 @@ yarn-error.log*
 .env
 masterplan.txt
 trash.txt
+/src/components/API/

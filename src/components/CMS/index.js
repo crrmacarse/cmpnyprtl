@@ -7,8 +7,8 @@ import {
 } from 'react-router-dom';
 import { withAuthorization } from '../Session';
 
-import ManageMain from './main';
-import ManageItems from './items';
+import CMSManageMain from './main';
+import CMSManageItems from './items';
 
 import DashboardIcon from '@material-ui/icons/DashboardRounded';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircleRounded';
@@ -16,9 +16,9 @@ import StoreMallDirectoryIcon from '@material-ui/icons/StoreMallDirectoryRounded
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasketRounded';
 import SettingsIcon from '@material-ui/icons/SettingsRounded';
 
-// TODO: Manage Component
+// FIX: Find better approach in toggling
 
-class ManagePage extends React.Component {
+class CMSPage extends React.Component {
     state = {
         activeLink: 'Dashboard'
     }
@@ -28,28 +28,29 @@ class ManagePage extends React.Component {
     }
 
     render() {
+        const { activeLink } = this.state;
         const { match } = this.props;
 
         return (
             <section id="manage-section" className="container-fluid bg-white">
                 <nav className="nav flex-column bg-dark pt-md-1 pt-2">
                     <Link to={`${match.path}/`} name="Dashboard" onClick={this.handleLinkClick}>
-                        <span className={"nav-link " + (this.state.activeLink === 'Dashboard' && 'text-white')}>
+                        <span className={"nav-link " + (activeLink === 'Dashboard' && 'text-white')}>
                             <DashboardIcon />
                         </span>
                     </Link>
                     <Link to={`${match.path}/branches`} name="Branches" onClick={this.handleLinkClick}>
-                        <span className={"nav-link " + (this.state.activeLink === 'Branches' && 'text-white')}>
+                        <span className={"nav-link " + (activeLink === 'Branches' && 'text-white')}>
                             <StoreMallDirectoryIcon />
                         </span>
                     </Link>
                     <Link to={`${match.path}/items`} name="Items" onClick={this.handleLinkClick}>
-                        <span className={"nav-link " + (this.state.activeLink === 'Items' && 'text-white')}>
+                        <span className={"nav-link " + (activeLink === 'Items' && 'text-white')}>
                             <ShoppingBasketIcon />
                         </span>
                     </Link>
                     <Link to={`${match.path}/accounts`} name="Accounts" onClick={this.handleLinkClick}>
-                        <span className={"nav-link " + (this.state.activeLink === 'Accounts' && 'text-white')}>
+                        <span className={"nav-link " + (activeLink === 'Accounts' && 'text-white')}>
                             <SupervisedUserCircleIcon />
                         </span>
                     </Link>
@@ -61,18 +62,18 @@ class ManagePage extends React.Component {
                 </nav>
                 <div className="ml-5 text-dark pb-5">
                     {/* <Route exact path={`${match.path}/`} component={ManageMain} /> */}
-                    <Route path={`${match.path}/items`} component={ManageMain} />
-                    <Route path={`${match.path}/branches`} component={ManageItems} />
+                    <Route path={`${match.path}/items`} component={CMSManageMain} />
+                    <Route path={`${match.path}/branches`} component={CMSManageItems} />
                 </div>
             </section>
         )
     }
 }
 
-ManagePage.propTypes = {
+CMSPage.propTypes = {
     match: propTypes.object.isRequired
 }
 
 const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(ManagePage);
+export default withAuthorization(condition)(CMSPage);

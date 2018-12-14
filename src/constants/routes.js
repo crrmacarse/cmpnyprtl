@@ -1,5 +1,14 @@
 export const LANDING = '/';
 export const SIGNUP = '/signup';
-export const MANAGE = '/manage';
-export const MANAGEITEMS = '/manage/items';
 export const HOME = '/home';
+export const EMAIL = '/email';
+export const REPORTS = '/reports';
+export const CMS = '/cms';
+export const CMSBRANCH = '/cms/branches';
+export const CMSITEMS = '/cms/items';
+export const CMSSETTINGS = '/cms/settings';
+export const CMSACCOUNTS = 'cms/accounts';
+export const ASSIGNMENTS = '/assignments';
+export const STORAGE = '/storage';
+export const API = '/api';
+export const SETTINGS = '/settings';
