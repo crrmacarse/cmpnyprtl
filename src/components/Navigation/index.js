@@ -6,7 +6,7 @@ import { withSnackbar } from 'notistack';
 
 import { SignInDialog } from '../Validation';
 import MenuToggle from './menutoggle';
-import { SideDrawer} from './navs';
+import { SideDrawer } from './navs';
 
 import ToolTip from '@material-ui/core/Tooltip';
 
@@ -14,7 +14,6 @@ import ExitToAppIcon from '@material-ui/icons/ExitToAppRounded';
 import OfflineBoltIcon from '@material-ui/icons/OfflineBolt';
 import CodeIcon from '@material-ui/icons/Code';
 import ContactSupportIcon from '@material-ui/icons/ContactSupportRounded';
-
 
 class NavigationPage extends React.Component {
     constructor(props) {
@@ -51,7 +50,7 @@ class NavigationPage extends React.Component {
     render() {
         return (
             <nav className="navbar navbar-expand-md fixed-top py-0 navbar-dark">
-                <ToolTip title="The MIS Department" aria-label="The MIS Department">
+                <ToolTip title="Company Portal" aria-label="Company Portal">
                     <Link
                         to={'/'}
                         className="navbar-brand p-0 mx-md-2 mb-1 text-dark"
@@ -78,57 +77,57 @@ class NavigationPage extends React.Component {
                         </span>
                     </ToolTip>
                 </div>
-                    <ul className="navbar-nav ml-auto">
+                <ul className="navbar-nav ml-auto">
                     <li className="nav-item d-none d-md-inline">
-                            <ToolTip title="Open Source!" aria-label="Open Source!">
-                                <a
-                                    href="https://github.com/crrmacarse/cmsx"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="nav-link py-md-1 font-weight-light text-dark">
-                                   :
+                        <ToolTip title="Talk to the developer 👀" aria-label="Talk to the developer 👀">
+                            <a
+                                href="https://twitter.com/pablongbuhaymo"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="nav-link py-md-1 font-weight-normal text-dark">
+                                :
                                 </a>
-                            </ToolTip>
-                        </li>
-                        <li className="nav-item d-none d-md-inline">
-                            <ToolTip title="Open Source!" aria-label="Open Source!">
-                                <a
-                                    href="https://github.com/crrmacarse/cmsx"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="nav-link py-md-1 text-dark">
-                                    <CodeIcon />
-                                </a>
-                            </ToolTip>
-                        </li>
-                        <li className="nav-item d-none d-md-inline">
-                            <ToolTip title="Contact MIS Department" aria-label="Contact MIS Department">
-                                <a
-                                    href="https://github.com/crrmacarse/cmsx"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="nav-link py-md-1 text-dark">
-                                    <ContactSupportIcon />
-                                </a>
-                            </ToolTip>
-                        </li>
-                        <li className="nav-item">
-                            <AuthUserContext.Consumer>
-                                {authUser =>
-                                    authUser
-                                        ? <MenuToggle />
-                                        : <span
-                                            className="nav-link py-md-1 text-dark"
-                                            onClick={this.openSignin}
-                                            title="Sign-in"
-                                            style={{ cursor: 'pointer' }}>
-                                            <ExitToAppIcon />
-                                        </span>
-                                }
-                            </AuthUserContext.Consumer>
-                        </li>
+                        </ToolTip>
+                    </li>
+                    <li className="nav-item d-none d-md-inline">
+                        <ToolTip title="Open Source!" aria-label="Open Source!">
+                            <a
+                                href="https://github.com/crrmacarse/cmsx"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="nav-link py-md-1 text-dark">
+                                <CodeIcon />
+                            </a>
+                        </ToolTip>
+                    </li>
+                    <li className="nav-item d-none d-md-inline">
+                        <ToolTip title="Contact MIS Department" aria-label="Contact MIS Department">
+                            <a
+                                href="https://github.com/crrmacarse/cmsx"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="nav-link py-md-1 text-dark">
+                                <ContactSupportIcon />
+                            </a>
+                        </ToolTip>
+                    </li>
+                    <li className="nav-item">
+                        <AuthUserContext.Consumer>
+                            {authUser =>
+                                authUser
+                                    ? <MenuToggle />
+                                    : <span
+                                        className="nav-link py-md-1 text-dark"
+                                        onClick={this.openSignin}
+                                        title="Sign-in"
+                                        style={{ cursor: 'pointer' }}>
+                                        <ExitToAppIcon />
+                                    </span>
+                            }
+                        </AuthUserContext.Consumer>
+                    </li>
 
-                    </ul>
+                </ul>
                 <SideDrawer left={this.state.left} toggleDrawer={this.toggleDrawer} />
                 <SignInDialog open={this.state.signinOpen} closeSignin={this.closeSignin} />
             </nav >

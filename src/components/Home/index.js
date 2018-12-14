@@ -98,6 +98,7 @@ const HomePage = () => (
                 <div className="row">
                     <div className="col-md-12 col-12">
                         <div className="d-flex bd-highlight ">
+                            {/* TODO: Figures / number here*/}
                             <div className="p-5 bg-secondary">
                                 
                             </div>
@@ -108,7 +109,7 @@ const HomePage = () => (
                 </div>
                 <br />
                 <div className="row">
-                    <div className="col-md-6 col-6">
+                    {/* <div className="col-md-6 col-6">
                         <div className="d-flex bd-highlight ">
                             <div className="p-5 flex-fill bg-success"></div>
                             <div className="p-5 order-3 flex-fill bg-dark"></div>
@@ -121,7 +122,7 @@ const HomePage = () => (
                             <div className="p-5 order-3 flex-fill bg-danger"></div>
                             <div className="p-5 flex-fill order-1 bg-info"></div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

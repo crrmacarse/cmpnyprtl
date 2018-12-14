@@ -5,6 +5,7 @@ import {
     Link
 } from 'react-router-dom';
 
+import ManageMain from './main';
 import ManageItems from './items';
 
 import Menu from '@material-ui/core/Menu';
@@ -61,18 +62,7 @@ class ManagePage extends React.Component {
             </section>
         )
     }
-
 }
-
-const ManageMain = () => (
-    <div className="row text-dark">
-        <div className="col-12">
-            <p className="h2 font-weight-light">
-                Nunc at lectus neque <span className = "h3 text-secondary font-weight-bold">(55)</span>
-            </p>
-        </div>
-    </div>
-)
 
 const ManageMenu = ({ match, anchorEl, title, handleClick, handleClose, menuClicked }) => {
     return (
@@ -108,8 +98,6 @@ const ManageMenu = ({ match, anchorEl, title, handleClick, handleClose, menuClic
     )
 
 }
-
-
 
 // const ManagePage = ({ match }) =>
 //     <section id="manage" className="container-fluid h-100 bg-white">

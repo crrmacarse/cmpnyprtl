@@ -58,15 +58,15 @@ class MenuToggle extends React.Component {
 
                     <MenuItem onClick={this.handleClose}>
                         <span className="text-dark">
-                            <SettingsIcon />
-                            <p className="d-inline mx-3 small font-weight-bold">Settings</p>
+                            <AspectRatioIcon />
+                            <p className="d-inline mx-3 small font-weight-bold">Preference</p>
                         </span>
                     </MenuItem>
 
                     <MenuItem onClick={this.handleClose}>
                         <span className="text-dark">
-                            <AspectRatioIcon />
-                            <p className="d-inline mx-3 small font-weight-bold">Preference</p>
+                            <SettingsIcon />
+                            <p className="d-inline mx-3 small font-weight-bold">Settings</p>
                         </span>
                     </MenuItem>
 
