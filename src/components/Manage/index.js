@@ -1,107 +1,78 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
 import {
     Route,
     Link
 } from 'react-router-dom';
+import { withAuthorization } from '../Session';
 
 import ManageMain from './main';
 import ManageItems from './items';
 
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import DashboardIcon from '@material-ui/icons/DashboardRounded';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircleRounded';
+import StoreMallDirectoryIcon from '@material-ui/icons/StoreMallDirectoryRounded';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasketRounded';
+import SettingsIcon from '@material-ui/icons/SettingsRounded';
 
 // TODO: Manage Component
 
 class ManagePage extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            anchorEl: null,
-            title: 'Home',
-        }
+    state = {
+        activeLink: 'Dashboard'
     }
 
-    handleClick = event => {
-        this.setState({
-            anchorEl: event.currentTarget
-        });
+    handleLinkClick = event => {
+        this.setState({ activeLink: event.currentTarget.name });
     }
-
-    handleClose = () => {
-        this.setState({ anchorEl: null });
-    }
-
-    menuClicked = (event) => {
-        this.setState({ title: event.nativeEvent.target.outerText })
-        this.handleClose();
-    }
-
 
     render() {
         const { match } = this.props;
 
         return (
-            <section id="manage" className="container-fluid h-100 bg-white">
-                <div className="row bg-dark py-1 mb-3 text-white">
-                    <div className="col-12 text-right">
-                        <p className="d-inline mx-2 px-3 small font-weight-light border-right mb-0"> &nbsp; Last Update: 2018/03/25 14:00:03</p>
-                        <ManageMenu
-                            match={this.props.match}
-                            anchorEl={this.state.anchorEl}
-                            title={this.state.title}
-                            handleClick={this.handleClick}
-                            handleClose={this.handleClose}
-                            menuClicked={this.menuClicked}
-                        />
-                    </div>
+            <section id="manage-section" className="container-fluid bg-white">
+                <nav className="nav flex-column bg-dark pt-md-1 pt-2">
+                    <Link to={`${match.path}/`} name="Dashboard" onClick={this.handleLinkClick}>
+                        <span className={"nav-link " + (this.state.activeLink === 'Dashboard' && 'text-white')}>
+                            <DashboardIcon />
+                        </span>
+                    </Link>
+                    <Link to={`${match.path}/branches`} name="Branches" onClick={this.handleLinkClick}>
+                        <span className={"nav-link " + (this.state.activeLink === 'Branches' && 'text-white')}>
+                            <StoreMallDirectoryIcon />
+                        </span>
+                    </Link>
+                    <Link to={`${match.path}/items`} name="Items" onClick={this.handleLinkClick}>
+                        <span className={"nav-link " + (this.state.activeLink === 'Items' && 'text-white')}>
+                            <ShoppingBasketIcon />
+                        </span>
+                    </Link>
+                    <Link to={`${match.path}/accounts`} name="Accounts" onClick={this.handleLinkClick}>
+                        <span className={"nav-link " + (this.state.activeLink === 'Accounts' && 'text-white')}>
+                            <SupervisedUserCircleIcon />
+                        </span>
+                    </Link>
+                    <Link to={`${match.path}/settings`} name="Settings" onClick={this.handleLinkClick}>
+                        <span className={"nav-link fixed-bottom " + (this.state.activeLink === 'Settings' && 'text-white')}>
+                            <SettingsIcon />
+                        </span>
+                    </Link>
+                </nav>
+                <div className="ml-5 text-dark pb-5">
+                    {/* <Route exact path={`${match.path}/`} component={ManageMain} /> */}
+                    <Route path={`${match.path}/items`} component={ManageMain} />
+                    <Route path={`${match.path}/branches`} component={ManageItems} />
                 </div>
-                <Route exact path={`${match.path}/`} component={ManageMain} />
-                <Route path={`${match.path}/items`} component={ManageItems} />
             </section>
         )
     }
 }
 
-const ManageMenu = ({ match, anchorEl, title, handleClick, handleClose, menuClicked }) => {
-    return (
-        <React.Fragment>
-            <p
-                className="d-inline mx-2 small font-weight-bold mb-0"
-                aria-owns={anchorEl ? 'simple-menu' : undefined}
-                onClick={handleClick}
-                aria-haspopup="true"
-                style={{ cursor: 'pointer' }}
-            > {title}</p>
-
-            <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
-                <Link className="clean-linkrouter" to={`${match.path}/`}>
-                    <MenuItem name="Doctorate" onClick={menuClicked}>
-                        Home
-                    </MenuItem>
-                </Link>
-
-                <Link className="clean-linkrouter" to={`${match.path}/items`}>
-                    <MenuItem name="Doctorate" onClick={menuClicked}>
-                        Manage Items
-                </MenuItem>
-                </Link>
-
-            </Menu>
-        </React.Fragment >
-    )
-
+ManagePage.propTypes = {
+    match: propTypes.object.isRequired
 }
 
-// const ManagePage = ({ match }) =>
-//     <section id="manage" className="container-fluid h-100 bg-white">
+const condition = authUser => !!authUser;
 
-//     </section>
-
-export default ManagePage;
+export default withAuthorization(condition)(ManagePage);

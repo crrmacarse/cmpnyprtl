@@ -1,5 +1,8 @@
 $background-color: #343a40;
+
 $mis-color : #ff753d;
+$text-dark: #343a40;
+$text-secondary: #6c757d;
 
 $media-query-md: 768px;
 
@@ -11,7 +14,6 @@ html, body, #root {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $background-color;
   height: 100%;
 
   #root{
@@ -22,7 +24,6 @@ html, body, #root {
     background-color: $mis-color; 
   }
 }
-
 
 // Personalized CSS
 
@@ -46,7 +47,7 @@ html, body, #root {
   bottom: 40%;
 }
 
-#landingpage{
+#landing-section{
 
   #title{
     letter-spacing: 3px;
@@ -62,5 +63,19 @@ html, body, #root {
     }
   } 
 }
+
+#manage-section{
+  nav{
+    position: fixed;
+    left: 0;
+    height: 100%;
+    z-index: 1020;
+  }
+
+  a{
+    color: $text-secondary !important;
+  }
+}
+
 
 

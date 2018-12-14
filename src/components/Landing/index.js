@@ -1,7 +1,7 @@
 import React from 'react';
 
 const LandingPage = () =>
-    <section id="landingpage" className="container-fluid">
+    <section id="landing-section" className="container-fluid bg-dark">
         <div className="row text-light full-section align-items-center text-center">
             <div className="col-md-12 col-12">
                 <p

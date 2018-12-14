@@ -20,6 +20,8 @@ import CalendarTodayIcon from '@material-ui/icons/CalendarTodayRounded';
 import SettingsIcon from '@material-ui/icons/SettingsRounded';
 import EmailIconRounded from '@material-ui/icons/EmailRounded';
 import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderModeRounded';
+import CloudIcon from '@material-ui/icons/CloudRounded';
+import FingerPrintIcon from '@material-ui/icons/FingerprintRounded';
 
 const styles = theme => ({
     mainIcon: {
@@ -95,10 +97,28 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
                     </Link>
                 </ListItem>
                 <ListItem>
+                    <Link to={'/storage'}>
+                        <ToolTip title="Cloud Storage" aria-label="Cloud Storage">
+                            <ListItemIcon>
+                                <CloudIcon />
+                            </ListItemIcon>
+                        </ToolTip>
+                    </Link>
+                </ListItem>
+                <ListItem>
                     <Link to={'/calendar'}>
                         <ToolTip title="Calendar of Activities" aria-label="Calendar of Activities">
                             <ListItemIcon>
                                 <CalendarTodayIcon />
+                            </ListItemIcon>
+                        </ToolTip>
+                    </Link>
+                </ListItem>
+                <ListItem>
+                    <Link to={'/settings'}>
+                        <ToolTip title="The API" aria-label="The API">
+                            <ListItemIcon>
+                                <FingerPrintIcon />
                             </ListItemIcon>
                         </ToolTip>
                     </Link>
