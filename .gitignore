@@ -26,3 +26,7 @@ yarn-error.log*
 masterplan.txt
 trash.txt
 /src/components/API/
+
+# Test Files
+
+/src/components/App/test.js

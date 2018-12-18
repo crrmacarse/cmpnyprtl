@@ -1,6 +1,8 @@
-$background-color: #343a40;
-
+$waffletime-blue: #32a5fd;
+$waffletime-yellow: #fee300;
+$waffletime-red: #fa0002;
 $mis-color : #ff753d;
+$night-color: #3a3585;
 $text-dark: #343a40;
 $text-secondary: #6c757d;
 
@@ -21,12 +23,15 @@ html, body, #root {
   }
 
   .navbar{
-    background-color: $mis-color; 
+    background-color: $waffletime-red; 
   }
 }
 
 // Personalized CSS
 
+.nightBG{
+  background: linear-gradient($night-color, #333) !important;
+}
 .full-section{
   padding: 18rem 0;
 }
@@ -47,21 +52,91 @@ html, body, #root {
   bottom: 40%;
 }
 
+.waffletime-yellow{
+  color: $waffletime-yellow !important;
+}
+
 #landing-section{
+  background-color: $waffletime-blue;
+  position: relative;
 
-  #title{
-    letter-spacing: 3px;
-  }
-
-  #subtitle{
-    letter-spacing: 1px;
-  }
-
-  @media only screen and (min-width: $media-query-md) {
-    .h-md-50{
-      height: 50% !important;
+  .main {
+    position: fixed;
+    bottom: 5%;
+    text-align: right;
+    right: 2%;
+    
+    #title{
+      letter-spacing: 3px;
+      color: $waffletime-yellow
     }
-  } 
+  
+    #subtitle{
+      letter-spacing: 1px;
+    }  
+  }
+
+  .cloud{
+    position: absolute;
+  }
+
+  #cloud1{
+    width: 20%;
+    top: 40%;
+    right: 50%;
+    opacity: .75;
+    -webkit-animation: cloudMoveFirstRight infinite 20s linear alternate;
+    animation: cloudMoveFirstRight infinite 20s linear alternate;
+  }
+
+  #cloud2{
+    width: 15%;
+    top: 20%;
+    right: 20%;
+    opacity: .30;
+    -webkit-animation: cloudMoveFirstLeft infinite 15s linear alternate;
+    animation: cloudMoveFirstLeft infinite 15s linear alternate;
+  }
+
+  #cloud3{
+    width: 10%;
+    top: 5%;
+    left: 10%;
+    opacity: .6;
+    -webkit-animation: cloudMoveFirstLeft infinite 10s linear alternate;
+    animation: cloudMoveFirstLeft infinite 10s linear alternate;
+  }
+
+  #cloud4{
+    width: 10%;
+    bottom: 5%;
+    right: 10%;
+    opacity: .3;
+    -webkit-animation: cloudMoveFirstRight infinite 15s linear alternate;
+    animation: cloudMoveFirstRight infinite 15s linear alternate;
+  }
+
+  @keyframes cloudMoveFirstRight {
+    0%
+    {
+      transform: translateX(-100%);
+    }
+    100%
+    {
+      transform: translateX(15%);
+    }
+  }
+
+  @keyframes cloudMoveFirstLeft {
+    0%
+    {
+      transform: translateX(100%);
+    }
+    100%
+    {
+      transform: translateX(15%);
+    }
+  }
 }
 
 #manage-section{

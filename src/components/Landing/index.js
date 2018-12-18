@@ -1,58 +1,58 @@
 import React from 'react';
+import classname from 'classnames';
 
-const LandingPage = () =>
-    <section id="landing-section" className="container-fluid bg-dark">
-        <div className="row text-light full-section align-items-center text-center">
-            <div className="col-md-12 col-12">
-                <p
-                    id="title"
-                    className="display-4 font-weight-bold mb-2"
-                >
-                    Waffle Time Group of Companies 
-                  </p>
-                <p
-                    d="subtitle"
-                    className="h5 font-weight-light"
-                >
-                   Duis felis nulla, sagittis suscipit metus vel, porttitor auctor metus.
-                   </p>
-            </div>
-        </div>
-        <div className="row text-light py-5 align-items-center text-center bg-secondary">
-                <div className="col-md-4 col-12">
-                    <p className="display-2">5233+</p>
-                    <p className="h2">Curabitur est est, iaculis et</p>
-                    <p className="h6 font-weight-normal">
-                        Donec in elit non enim lacinia feugiat pulvinar sed quam.
-                        Cras ac sagittis libero.
-                    </p>
-                </div>
-                <div className="col-md-4 col-12">
-                    <p className="display-2">50%</p>
-                    <p className="h2">Sed pretium massa turpis</p>
-                    <p className="h6 font-weight-normal">
-                        Fusce lobortis bibendum nisl, eget ornare mauris volutpat eu.
-                        Cras ut lectus ac est sodales condimentum
-                    </p>
-                </div>
-                <div className="col-md-4 col-12">
-                    <p className="display-2">#1</p>
-                    <p className="h2">Duis id libero vitae justo</p>
-                    <p className="h6 font-weight-normal">
-                        Vivamus fermentum sagittis massa, a malesuada lectus congue a.
-                        Orci varius natoque penatibus et magnis dis parturient montes
-                    </p>
-                </div>
-        </div>
-        <div className="row text-light full-section align-items-center text-center">
-            <div className="col-md-12 col-12">
-                <a href = "https://github.com/crrmacarse/cmsx" title = "Contribute now!" target ="_blank" rel="noopener noreferrer" className = "btn text-secondary">
-                  An open source project.
-                </a>
-            </div>
-        </div>
+import cloud from '../../assets/img/cloud.png';
 
-    </section>
+class LandingPage extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            currHour: null
+        }
+    }
+
+    componentDidMount() {
+        this.setState({
+            currHour: new Date().getHours()
+        })
+    }
+
+    render() {
+        const { currHour } = this.state;
+      
+        let landing = classname('container-fluid h-100',
+            { 'nightBG': currHour > 18 && currHour < 7 }
+        )
+
+        return (
+            <section id="landing-section" className={ landing }>
+                <img id="cloud1" src={cloud} className="cloud img-fluid" alt="Waffle Clouds!" />
+                <img id="cloud2" src={cloud} className="cloud img-fluid" alt="Waffle Clouds!" />
+                <img id="cloud3" src={cloud} className="cloud img-fluid" alt="Waffle Clouds!" />
+                <img id="cloud4" src={cloud} className="cloud img-fluid" alt="Waffle Clouds!" />
+                <div className="row text-light main">
+                    <div className="col-md-12 col-12">
+                        <p
+                            id="title"
+                            className="display-4 font-weight-bold mb-2"
+                        >
+                            Waffle Time Group of Companies
+                      </p>
+                        <p
+                            id="subtitle"
+                            className="h5 font-weight-light"
+                        >
+                            A company-wide web portal for all things
+                       </p>
+                    </div>
+                </div>
+            </section>
+        )
+    }
+
+}
+
 
 
 export default LandingPage;

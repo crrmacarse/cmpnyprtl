@@ -49,26 +49,32 @@ class NavigationPage extends React.Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-md fixed-top py-0 navbar-dark">
+            <nav className="navbar navbar-expand-md fixed-top py-0 navbar-light">
                 <ToolTip title="Company Portal" aria-label="Company Portal">
-                    <Link
-                        to={'/'}
-                        className="navbar-brand p-0 mx-md-2 mb-1 text-dark"
-                        onDoubleClick={() => {
-                            this.props.enqueueSnackbar('You need to Sign-in first', { variant: 'warning' });
-                        }}
-                    >
-                        <AuthUserContext.Consumer>
-                            {authUser =>
-                                authUser
-                                    ? <OfflineBoltIcon onMouseEnter={this.openDrawer}
-                                        onClick={this.openDrawer} />
-                                    : <OfflineBoltIcon />
-                            }
-                        </AuthUserContext.Consumer>
-                    </Link>
+                    <AuthUserContext.Consumer>
+                        {authUser =>
+                            authUser
+                                ? <span
+                                    className="navbar-brand p-0 mx-md-2 mb-1 text-light"
+                                    onMouseEnter={this.openDrawer}
+                                    onClick={this.openDrawer}
+                                >
+                                    <OfflineBoltIcon />
+                                </span>
+                                : <Link
+                                    to={'/'}
+                                    className="navbar-brand p-0 mx-md-2 mb-1 text-light"
+                                    onDoubleClick={() => {
+                                        this.props.enqueueSnackbar('You need to Sign-in first', { variant: 'warning' });
+                                    }}
+                                >
+                                    <OfflineBoltIcon />
+                                </Link>
+                        }
+                    </AuthUserContext.Consumer>
+
                 </ToolTip>
-                <div className="nav-item mr-auto text-secondary font-weight-normal ml-md-1">
+                <div className="nav-item mr-auto font-weight-normal ml-md-1">
                     | <ToolTip title="The Waffle Time Group" aria-label="The Waffle Time Group">
                         <span
                             className="font-weight-light mx-2 text-light ml-1 small"
@@ -84,7 +90,7 @@ class NavigationPage extends React.Component {
                                 href="https://twitter.com/pablongbuhaymo"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="nav-link py-md-1 font-weight-normal text-dark">
+                                className="nav-link py-md-1 font-weight-normal text-light">
                                 :
                                 </a>
                         </ToolTip>
@@ -95,7 +101,7 @@ class NavigationPage extends React.Component {
                                 href="https://github.com/crrmacarse/cmsx"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="nav-link py-md-1 text-dark">
+                                className="nav-link py-md-1 text-light">
                                 <CodeIcon />
                             </a>
                         </ToolTip>
@@ -106,7 +112,7 @@ class NavigationPage extends React.Component {
                                 href="https://github.com/crrmacarse/cmsx"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="nav-link py-md-1 text-dark">
+                                className="nav-link py-md-1 text-light">
                                 <ContactSupportIcon />
                             </a>
                         </ToolTip>
@@ -117,7 +123,7 @@ class NavigationPage extends React.Component {
                                 authUser
                                     ? <MenuToggle />
                                     : <span
-                                        className="nav-link py-md-1 text-dark"
+                                        className="nav-link py-md-1 waffletime-yellow"
                                         onClick={this.openSignin}
                                         title="Sign-in"
                                         style={{ cursor: 'pointer' }}>

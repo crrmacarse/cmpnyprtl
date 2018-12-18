@@ -1,5 +1,5 @@
 
 ###### Partial ONLY
 
-![CMS+ landing page](https://i.imgur.com/pFAErYW.png)
+![CMS+ landing page](https://i.imgur.com/TcHDGAp.png)
 

@@ -25,9 +25,9 @@ import FingerPrintIcon from '@material-ui/icons/FingerprintRounded';
 
 const styles = theme => ({
     mainIcon: {
-        color: '#ff753d',
+        color: '#32a5fd',
         '&:hover': {
-            color: '#343a40',
+            color: '#fa0002',
         }
     },
     list: {
