@@ -3,6 +3,7 @@ $waffletime-yellow: #fee300;
 $waffletime-red: #fa0002;
 $mis-color : #ff753d;
 $night-color: #3a3585;
+$white-smoke: #f5f5f5;
 $text-dark: #343a40;
 $text-secondary: #6c757d;
 
@@ -56,9 +57,26 @@ html, body, #root {
   color: $waffletime-yellow !important;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 #landing-section{
   background-color: $waffletime-blue;
   position: relative;
+  background: linear-gradient($white-smoke,$waffletime-blue);
 
   .main {
     position: fixed;
@@ -147,9 +165,12 @@ html, body, #root {
     z-index: 1020;
   }
 
-  a{
-    color: $text-secondary !important;
+  nav{
+    a{
+      color: $text-secondary !important;
+    }
   }
+
 }
 
 

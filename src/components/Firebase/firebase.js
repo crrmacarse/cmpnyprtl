@@ -43,7 +43,11 @@ class Firebase {
 
     users = () => this.db.ref('users/');
 
-    items = () => this.db.ref('items/');
+    businessUnits = () => this.db.ref('bussinessUnit/');
+
+    items = (businessunit) => this.db.ref('data/items/'+businessunit);
+
+    doCreateItem = (businessunit) => this.db.ref('data/items/'+businessunit);
 
 }
 

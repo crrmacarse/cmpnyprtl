@@ -40,12 +40,12 @@ Todo:
 
   Presentation
   Home GUI 🤔
-  Landing Page Improvment 🤔
+  ✔ Landing Page Improvment 🤔 @done(18-12-18 13:03)
   
 
   ☐ Manage Branch
-  GUI Design 
-  Sidebar Actions  
+  ✔ GUI Design @done(18-12-18 13:03)
+  ✔ Sidebar Actions @done(18-12-18 13:03)
   Form Submission Design
   Adding
   Updating
@@ -53,7 +53,6 @@ Todo:
   ☐ Creation of REST API.
   Inititialization
   Use JWT Auth + Firebase generated key for auth?
-
 
 
 

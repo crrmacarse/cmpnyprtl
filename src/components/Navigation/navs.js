@@ -22,6 +22,9 @@ import EmailIconRounded from '@material-ui/icons/EmailRounded';
 import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderModeRounded';
 import CloudIcon from '@material-ui/icons/CloudRounded';
 import FingerPrintIcon from '@material-ui/icons/FingerprintRounded';
+import WorkOutline from '@material-ui/icons/WorkOutlineRounded';
+
+import * as ROUTES from '../../constants/routes';
 
 const styles = theme => ({
     mainIcon: {
@@ -40,7 +43,7 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
         <div className={classes.list}>
             <List>
                 <ListItem>
-                    <Link to={`/`}>
+                    <Link to={ROUTES.LANDING}>
                         <ToolTip title="The Waffle Time Group" aria-label="The Waffle Time Group">
                             <ListItemIcon>
                                 <OfflineBoltIcon
@@ -52,7 +55,7 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
                 </ListItem>
                 <Divider />
                 <ListItem>
-                    <Link to={`/home`}>
+                    <Link to={ROUTES.HOME}>
                         <ToolTip title="Home" aria-label="Home">
                             <ListItemIcon>
                                 <HomeIcon />
@@ -61,7 +64,7 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link to={'/message'}>
+                    <Link to={ROUTES.EMAIL}>
                         <ToolTip title="Email" aria-label="Email">
                             <ListItemIcon>
                                 <EmailIconRounded />
@@ -70,7 +73,7 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link to={`/reports`}>
+                    <Link to={ROUTES.REPORTS}>
                         <ToolTip title="Reports" aria-label="Reports">
                             <ListItemIcon>
                                 <AssessmentIcon />
@@ -79,7 +82,7 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link to={`/cms`}>
+                    <Link to={ROUTES.CMS}>
                         <ToolTip title="Content Management System" aria-label="Content Management System">
                             <ListItemIcon>
                                 <ChromeReaderModeIcon />
@@ -88,7 +91,16 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link to={'/signup'}>
+                    <Link to={ROUTES.TOOLS}>
+                        <ToolTip title="Tools" aria-label="Tools">
+                            <ListItemIcon>
+                                <WorkOutline />
+                            </ListItemIcon>
+                        </ToolTip>
+                    </Link>
+                </ListItem>
+                <ListItem>
+                    <Link to={ROUTES.SIGNUP}>
                         <ToolTip title="Assignments" aria-label="Assignments">
                             <ListItemIcon>
                                 <AssignmentIcon />
@@ -97,7 +109,7 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link to={'/storage'}>
+                    <Link to={ROUTES.STORAGE}>
                         <ToolTip title="Cloud Storage" aria-label="Cloud Storage">
                             <ListItemIcon>
                                 <CloudIcon />
@@ -106,7 +118,7 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link to={'/calendar'}>
+                    <Link to={ROUTES.CALENDAR}>
                         <ToolTip title="Calendar of Activities" aria-label="Calendar of Activities">
                             <ListItemIcon>
                                 <CalendarTodayIcon />
@@ -115,7 +127,7 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link to={'/api'}>
+                    <Link to={ROUTES.API}>
                         <ToolTip title="The API" aria-label="The API">
                             <ListItemIcon>
                                 <FingerPrintIcon />
@@ -124,7 +136,7 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link to={'/settings'}>
+                    <Link to={ROUTES.SETTINGS}>
                         <ToolTip title="Settings" aria-label="Settings">
                             <ListItemIcon>
                                 <SettingsIcon />

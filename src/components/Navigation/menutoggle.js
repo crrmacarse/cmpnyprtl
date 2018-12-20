@@ -35,7 +35,7 @@ class MenuToggle extends React.Component {
             <React.Fragment>
                 <ToolTip title="Account" aria-label="Account">
                     <span
-                        className="nav-link py-md-1 waffletime-yellow"
+                        className="nav-link py-md-1 text-white"
                         aria-owns={anchorEl ? 'simple-menu' : undefined}
                         onClick={this.handleClick}
                         aria-haspopup="true"
