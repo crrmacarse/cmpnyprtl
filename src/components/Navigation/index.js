@@ -109,8 +109,8 @@ class NavigationPage extends React.Component {
                     <li className="nav-item d-none d-md-inline">
                         <ToolTip title="Contact MIS Department" aria-label="Contact MIS Department">
                             <a
-                                href="https://github.com/crrmacarse/cmsx"
-                                target="_blank"
+                                href="mailto:crrmacarse@gmail.com?Subject=WTGOC%20Concern"
+                                target="_top"
                                 rel="noopener noreferrer"
                                 className="nav-link py-md-1 text-light">
                                 <ContactSupportIcon />

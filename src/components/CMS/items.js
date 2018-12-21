@@ -68,7 +68,7 @@ class ItemForm extends React.Component {
         this.props.firebase.items(businessunit).on('value', snapshot => {
             const listObject = snapshot.val();
 
-            const itemList = Object.keys(listObject).map(key => ({
+            const itemList = Object.keys(listObject || {}).map(key => ({
                 ...listObject[key],
                 id: key,
             }))

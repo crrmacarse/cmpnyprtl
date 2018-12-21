@@ -49,6 +49,8 @@ class Firebase {
 
     doCreateItem = (businessunit) => this.db.ref('data/items/'+businessunit);
 
+    calendar = () => this.db.ref('calendar/');
+
 }
 
 export default Firebase

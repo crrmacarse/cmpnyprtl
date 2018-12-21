@@ -131,7 +131,7 @@ class CMSPage extends React.Component {
             </Menu>
 
         return (
-            <section id="manage-section" className="container-fluid bg-white">
+            <section id="manage-section" className="container-fluid">
                 <nav className="nav flex-column bg-dark pt-md-1 pt-2">
                     <Link to={`${match.path}/`} name="Dashboard" onClick={this.handleLinkClick}>
                         <span className={"nav-link " + (activeLink === 'Dashboard' && 'text-white')}>

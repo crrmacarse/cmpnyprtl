@@ -21,7 +21,7 @@ class LandingPage extends React.Component {
     render() {
         const { currHour } = this.state;
       
-        const landing = classname('container-fluid h-100',
+        const landing = classname('container-fluid h-100 pos-fixed',
             { 'nightBG': currHour > 18 && currHour < 7 }
         )
 
