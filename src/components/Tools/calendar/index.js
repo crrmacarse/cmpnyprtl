@@ -91,7 +91,6 @@ class ManageCalendarForm extends React.Component {
         return (
             <MuiPickersUtilsProvider utils={MomentUtils} moment={moment}>
                 <form onSubmit={this.onSubmit}>
-                    <p className="display-4">Manage Calendar of Activites</p>
                     <div className="m-4">
                         <input
                             name="eventName"

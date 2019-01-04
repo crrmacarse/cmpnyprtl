@@ -13,12 +13,17 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
-import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+
+
+/*
+
+    This is a messed up shit. BEWARE
+
+*/
 
 const INITIAL_STATE = {
     username: '',
@@ -61,12 +66,6 @@ class SignUpPage extends React.Component {
         }));
     };
 
-    handleReset = () => {
-        this.setState({
-            activeStep: 0,
-        });
-    };
-
     handleChange = name => event => {
         this.setState({ checked: event.target.checked });
     };
@@ -86,7 +85,7 @@ class SignUpPage extends React.Component {
                     label="I am an employee"
                 />;
             case 1:
-                return <p className = "small">Idk what to put</p>;
+                return <p className="small">Idk what to put</p>;
             case 2:
                 return <SignUpFormWrapped />;
             default:
@@ -104,8 +103,8 @@ class SignUpPage extends React.Component {
 
         return (
             <section className="container-fluid h-100 text-dark">
-                <div className="row">
-                    <div className="col-md-5 col-12 ml-md-5">
+                <div className="row p-3">
+                    <div className="col-md-5 col-12">
                         <Stepper activeStep={activeStep} orientation="vertical">
                             {steps.map((label, index) => {
                                 return (
@@ -115,44 +114,61 @@ class SignUpPage extends React.Component {
                                             {this.getStepContent(index)}
                                             <div className={classes.actionsContainer}>
                                                 <div>
-                                                    <Button
-                                                        disabled={activeStep === 0}
-                                                        onClick={this.handleBack}
-                                                        className={classes.button}
-                                                    >
-                                                        Back
-                                                    </Button>
-                                                    <Button
-                                                        variant="contained"
-                                                        color="primary"
-                                                        onClick={this.handleNext}
-                                                        className={classes.button}
-                                                    >
-                                                        {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                                    </Button>
+                                                    {activeStep < steps.length - 1
+                                                        &&
+
+                                                        <div>
+                                                            <Button
+                                                                disabled={activeStep === 0}
+                                                                onClick={this.handleBack}
+                                                                className={classes.button}
+                                                            >
+                                                                Back
+                                                            </Button>
+                                                            <Button
+                                                                variant="contained"
+                                                                color="primary"
+                                                                onClick={this.handleNext}
+                                                                className={classes.button}
+                                                            >
+                                                                Next
+                                                            </Button>
+                                                        </div>
+
+                                                    }
                                                 </div>
                                             </div>
                                         </StepContent>
                                     </Step>
                                 );
                             })}
-                        </Stepper>
-                        {activeStep === steps.length && (
-                            <Paper square elevation={0} className={classes.resetContainer}>
-                                <Typography>All steps completed - you&apos;re finished</Typography>
-                                <Button onClick={this.handleReset} className={classes.button}>
-                                    Reset
-              </Button>
-                            </Paper>
-                        )}
+                        </Stepper> 
+                    </div>
+                    <div className="col-md-7 col-12">
+                        <p className="h5 font-weight-bold">Disclaimer:</p>
+                        <p className="font-weight-light">
+                            Integer ornare quam odio, eu ornare nibh mattis cursus. Donec a efficitur mi, sit amet
+                            cursus lorem. Cras quis gravida tortor. Proin in turpis vitae lectus lacinia elementum eu
+                            in libero. Duis sagittis auctor augue, eget egestas erat efficitur ac. Nam quis justo
+                            consectetur justo malesuada volutpat. Fusce ac elementum mi, sed convallis turpis.
+                            Mauris eleifend lorem ante, in accumsan magna porta ut. Nam ac congue sapien, at mattis
+                            ipsum. Aliquam a porta orci, facilisis facilisis orci. Cras ut scelerisque nulla.
+                            Mauris aliquam placerat neque condimentum aliquam. Nulla facilisi. Aenean maximus
+                            ut justo et consectetur. Ut hendrerit ex et risus tincidunt interdum.
+                        </p>
+                        <p className="h5 mt-5 font-weight-bold">Terms and Conditions:</p>
+                        <p className="font-weight-light">
+                            Mauris et dolor convallis dui scelerisque ultrices. Aenean et ullamcorper urna, a suscipit
+                            purus. Proin velit massa, ullamcorper eget tincidunt vel, consectetur vitae dolor. Maecenas
+                            nec elit in tellus egestas ultricies vel non turpis. Quisque elementum augue in dapibus laoreet.
+                            Donec quam enim, dictum iaculis aliquet sit amet, viverra ac libero.
+                        </p>
                     </div>
                 </div>
             </section>
         );
     }
 }
-
-
 
 class SignUpForm extends React.Component {
     constructor(props) {
