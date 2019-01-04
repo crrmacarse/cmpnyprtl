@@ -37,6 +37,13 @@ class ItemForm extends React.Component {
     }
 
     onSubmit = event => {
+        /*
+            FiX: idk why this is on top. bcos my standard of approach is event.preventDefault() 
+            must be on bottom. noted to check and test
+
+            FIX: doCreateItem() duplicate approach in ./firebase class. doCreateItem can be eliminated
+
+        */
         event.preventDefault();
         const { name, type, price, fom } = this.state;
         const { businessunit, enqueueSnackbar } = this.props;
@@ -56,7 +63,7 @@ class ItemForm extends React.Component {
                 enqueueSnackbar('Added Succesfully', { variant: 'success' });
             })
             .catch(error => {
-                enqueueSnackbar(error.message, { variant: 'success' });
+                enqueueSnackbar(error.message, { variant: 'warning' });
             })
     }
 

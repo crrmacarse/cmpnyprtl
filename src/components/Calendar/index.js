@@ -22,16 +22,27 @@ class CalendarPage extends React.Component {
         this.props.firebase.calendar().on('value', snapshot => {
             const listObject = snapshot.val();
 
-            listObject.forEach(value => {
-                value.end = new Date(value.end)
-                value.start = new Date(value.start)
-            });
+
+            Object.keys(listObject).forEach(function (key){
+
+                /*
+                
+                    A mini proccess on converting a date-formatted String inside an Object to a Date type.
+
+                    solution for: a bug when u clicked ( week / day ) wherein it get confuses with date-formatted string
+               
+                */ 
+
+                listObject[key].start = new Date(listObject[key].start)
+                listObject[key].end = new Date(listObject[key].end)
+                
+            });         
 
             const calendarList = Object.keys(listObject || {}).map(key => ({
                 ...listObject[key],
                 id: key
             }))
-
+            
             this.setState({
                 events: calendarList,
                 loading: false

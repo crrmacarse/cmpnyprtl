@@ -14,6 +14,7 @@ import { SignUpPage } from '../Validation';
 import HomePage from '../Home';
 import APIPage from '../API';
 import CalendarPage from '../Calendar';
+import ToolsPage from '../Tools';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -26,6 +27,7 @@ const App = () =>
                     <Route path={ROUTES.CMS} component={CMSPage} />
                     <Route exact path={ROUTES.SIGNUP} component={SignUpPage} />
                     <Route exact path={ROUTES.HOME} component={HomePage} />
+                    <Route exact path = { ROUTES.TOOLS } component = { ToolsPage } />
                     <Route exact path = { ROUTES.API } component = {APIPage} />
                     <Route exact path = { ROUTES.CALENDAR } component = {CalendarPage} />
                 </Switch>
