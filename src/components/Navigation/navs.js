@@ -35,6 +35,9 @@ const styles = theme => ({
     },
     list: {
         width: 75,
+    },
+    sidenav: {
+        outline: 'none',
     }
 });
 
@@ -152,6 +155,7 @@ const SideDrawerMain = ({ classes, left, toggleDrawer }) => {
         <div>
             <Drawer open={left} onClose={toggleDrawer('left', false)}>
                 <div
+                    className = {classes.sidenav}
                     tabIndex={0}
                     role="button"
                     onClick={toggleDrawer('left', false)}

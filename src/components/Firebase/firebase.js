@@ -37,6 +37,8 @@ class Firebase {
     doPasswordUpdate = password => 
         this.auth.currentUser.updatePassword(password);
 
+    doSendEmailVerification = () => this.auth.currentUser.sendEmailVerification();
+
     // personalized function call to firebase db
 
     user = uid => this.db.ref(`users/${uid}`);

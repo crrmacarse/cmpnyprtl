@@ -62,18 +62,25 @@ class SignInDialog extends React.Component {
 
     onSubmit = event => {
         const { email, password } = this.state;
-        
+
         this.props.firebase
             .doSignInWithEmailAndPassword(email, password)
             .then(authUser => {
                 this.setState({ ...INITIAL_STATE });
-                this.props.enqueueSnackbar('Succesfully logged in', {variant: 'success'});
+                this.props.enqueueSnackbar('Succesfully logged in', { variant: 'success' });
                 this.props.closeSignin();
                 this.props.history.push(ROUTES.HOME);
+
+                // Added delay for an e n h a n c e d user e x p e r i e n c e
+
+                setTimeout(() => !authUser.user.emailVerified && this.props
+                    .enqueueSnackbar("Account still not verified. Check on your email now!", { variant: 'warning' }),
+                4000);
+
             })
             .catch(error => {
-                this.props.enqueueSnackbar(error.message, {variant: 'error'});
-                this.setState({password: ''})
+                this.props.enqueueSnackbar(error.message, { variant: 'error' });
+                this.setState({ password: '' })
             });
 
         event.preventDefault();
@@ -81,7 +88,7 @@ class SignInDialog extends React.Component {
 
 
     onChange = event => {
-        this.setState({[event.target.name] : event.target.value})
+        this.setState({ [event.target.name]: event.target.value })
     }
 
     render() {
@@ -95,15 +102,15 @@ class SignInDialog extends React.Component {
         const isInvalid = password === '' || email === '';
 
         return (
-                <Dialog
-                    open={open}
-                    onClose={closeSignin}
-                    TransitionComponent={Transition}
-                    keepMounted
-                    fullWidth
-                    maxWidth="sm"
-                >
-                <form onSubmit = {this.onSubmit}>
+            <Dialog
+                open={open}
+                onClose={closeSignin}
+                TransitionComponent={Transition}
+                keepMounted
+                fullWidth
+                maxWidth="sm"
+            >
+                <form onSubmit={this.onSubmit}>
                     <DialogTitle>
                         Enter Credentials
                         </DialogTitle>
@@ -112,34 +119,34 @@ class SignInDialog extends React.Component {
                             <SignUpLink handleClose={closeSignin} />
                         </DialogContentText>
                         <TextField
-                            name = "email"
+                            name="email"
                             autoFocus
                             margin="dense"
                             id="email"
                             label="Email"
                             type="email"
                             fullWidth
-                            autoComplete = "email"
+                            autoComplete="email"
                             value={email}
-                            onChange = {this.onChange}
+                            onChange={this.onChange}
                         />
                         <TextField
-                            name = "password"
+                            name="password"
                             margin="dense"
                             id="name"
                             label="Password"
                             type="password"
                             fullWidth
-                            autoComplete = "current-password"
-                            onChange = {this.onChange}
+                            autoComplete="current-password"
+                            onChange={this.onChange}
                             value={password}
                         />
                     </DialogContent>
 
                     <DialogActions>
                         <Button
-                            type = "submit"
-                            disabled = {isInvalid}
+                            type="submit"
+                            disabled={isInvalid}
                             variant="contained"
                             className={classes.customBTN}
                         >
@@ -147,8 +154,8 @@ class SignInDialog extends React.Component {
                             Sign-in
                             </Button>
                     </DialogActions>
-                    </form>
-                </Dialog>
+                </form>
+            </Dialog>
         )
     }
 }

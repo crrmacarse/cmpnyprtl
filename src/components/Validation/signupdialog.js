@@ -17,6 +17,10 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 
 /*
@@ -28,6 +32,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 const INITIAL_STATE = {
     username: '',
     email: '',
+    emailhandler: '',
     passwordOne: '',
     passwordTwo: ''
 };
@@ -46,6 +51,13 @@ const styles = theme => ({
     resetContainer: {
         padding: theme.spacing.unit * 3,
     },
+    selectEmpty: {
+        marginTop: theme.spacing.unit * 2,
+    },
+    formControl: {
+        marginLeft: theme.spacing.unit,
+        minWidth: 130,
+      },
 });
 
 class SignUpPage extends React.Component {
@@ -142,7 +154,7 @@ class SignUpPage extends React.Component {
                                     </Step>
                                 );
                             })}
-                        </Stepper> 
+                        </Stepper>
                     </div>
                     <div className="col-md-7 col-12">
                         <p className="h5 font-weight-bold">Disclaimer:</p>
@@ -181,27 +193,39 @@ class SignUpForm extends React.Component {
         }
     }
 
+    handleEmailHandlerChange = event => {
+        this.setState({
+            emailhandler: event.target.value
+        })
+    }
+
     onChange = event => {
         this.setState({ [event.target.name]: event.target.value });
     }
 
     onSubmit = event => {
-        const { username, email, passwordOne } = this.state;
+        const { username, email, passwordOne, emailhandler } = this.state;
+        
+        let emailFinal = (email + emailhandler).trim();
 
         this.props.firebase
-            .doCreateUserWithEmailAndPassword(email, passwordOne)
+            .doCreateUserWithEmailAndPassword(emailFinal, passwordOne)
             .then(authUser => {
                 // Create a user in your Firebase realtime database
                 return this.props.firebase
                     .user(authUser.user.uid)
                     .set({
                         username,
-                        email,
-                    });
+                        email : emailFinal,
+                    })
+            })
+            .then(() => {
+                this.props.firebase.doSendEmailVerification()
             })
             .then(() => {
                 this.setState({ ...INITIAL_STATE });
-                this.props.enqueueSnackbar('Succesfully registered', { variant: 'success' });
+                this.props.enqueueSnackbar("A Verification email was sent to your email account. Kindly check it out!", { variant: 'warning' });
+                this.props.enqueueSnackbar('Succesfully registered!', { variant: 'success' });
                 this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
@@ -219,13 +243,17 @@ class SignUpForm extends React.Component {
             email,
             passwordOne,
             passwordTwo,
+            emailhandler
         } = this.state;
+
+        const { classes } = this.props;
 
         const isInvalid =
             passwordOne !== passwordTwo ||
             passwordOne === '' ||
             email === '' ||
-            username === '';
+            username === '' ||
+            emailhandler === '';
 
         return (
             <form onSubmit={this.onSubmit}>
@@ -243,16 +271,33 @@ class SignUpForm extends React.Component {
                         value={username}
                     />
                 </div>
-                <div className="m-2">
+                <div className="m-2 d-flex flex-wrap">
                     <TextField
                         name="email"
                         label="Email"
                         id="idEmail"
-                        fullWidth
                         helperText="Lorem Ipsum Dolor"
                         onChange={this.onChange}
                         value={email}
                     />
+                    <FormControl required className = {classes.formControl}>
+                        <InputLabel htmlFor="emailhandler-required">Email Handler</InputLabel>
+                        <Select
+                            native
+                            className={classes.selectEmpty}
+                            value={emailhandler}
+                            name="age"
+                            onChange={this.handleEmailHandlerChange}
+                            inputProps={{
+                                id: 'emailhandler-required',
+                            }}
+                        >
+                            <option value="" />
+                            <option value={'@coffeebreak.ph'}>@coffeebreak.ph</option>
+                            <option value={'@waffletime.com'}>@waffletime.com</option>
+                        </Select>
+                        <FormHelperText>Required</FormHelperText>
+                    </FormControl>
                 </div>
                 <div className="m-2">
                     <TextField
@@ -312,6 +357,7 @@ const SignUpFormWrapped = compose(
     withFirebase,
     withRouter,
     withSnackbar,
+    withStyles(styles),
 )(SignUpForm);
 
 export default withStyles(styles)(SignUpPage);

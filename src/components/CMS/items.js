@@ -89,13 +89,13 @@ class ItemForm extends React.Component {
 
             */
 
-            const itemHeader = Object.keys(itemList[0]).map(key => ({
-                header: key
-            }))
+            // const itemHeader = Object.keys(itemList[0]).map(key => ({
+            //     header: key
+            // }))
 
             this.setState({
                 items: itemList,
-                header: itemHeader,
+                // header: itemHeader,
                 loading: false
             })
 

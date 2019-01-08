@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { withAuthorization } from '../Session';
+import { withAuthorization, AuthUserContext } from '../Session';
 
 import SIgnOutButton from '../Validation/signout';
 
@@ -15,7 +15,8 @@ import SettingsIcon from '@material-ui/icons/SettingsRounded';
 
 class MenuToggle extends React.Component {
     state = {
-        anchorEl: null
+        anchorEl: null,
+        username: null,
     }
 
     handleClick = event => {
@@ -28,8 +29,19 @@ class MenuToggle extends React.Component {
         this.setState({ anchorEl: null });
     }
 
+    componentDidMount() {
+        let value = this.context;
+        this.props.firebase.user(value.uid).on('value', snapshot => {
+            this.setState({ username: snapshot.val().username })
+        });
+    }
+
+    componentWillUnmount(){
+        this.props.firebase.user().off();
+    }
+
     render() {
-        const { anchorEl } = this.state;
+        const { anchorEl, username } = this.state;
 
         return (
             <React.Fragment>
@@ -49,10 +61,11 @@ class MenuToggle extends React.Component {
                     open={Boolean(anchorEl)}
                     onClose={this.handleClose}
                 >
+
                     <MenuItem onClick={this.handleClose}>
                         <span className="text-dark">
                             <AccountCircleIcon />
-                            <p className="d-inline mx-3 small font-weight-bold">Account</p>
+                            <p className="d-inline mx-3 small font-weight-bold">{username}</p>
                         </span>
                     </MenuItem>
 
@@ -79,6 +92,10 @@ class MenuToggle extends React.Component {
     }
 
 }
+
+// Passes the context to component for function use
+
+MenuToggle.contextType = AuthUserContext;
 
 const condition = authUser => !!authUser;
 
