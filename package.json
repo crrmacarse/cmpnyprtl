@@ -12,7 +12,7 @@
     "firebase": "^5.11.1",
     "material-ui-pickers": "^2.0.4",
     "moment": "^2.23.0",
-    "node-sass": "^4.10.0",
+    "node-sass": "^7.0.0",
     "notistack": "^0.4.1",
     "react": "^16.14.0",
     "react-big-calendar": "^0.20.2",
